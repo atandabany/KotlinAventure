@@ -18,9 +18,41 @@ fun main(args: Array<String>) {
         defense = 4,
         vitesse = 11,
         endurance = 6)
+
+
     // TODO Intermission 1 Ajouter d'autres monstres
+    val Black = Personnage(
+        "Black",
+        pointDeVie = 900000,
+        pointDeVieMax = 20,
+        attaque = 50,
+        defense = 4,
+        vitesse = 11,
+        endurance = 6)
+
+    val Dragon = Personnage(
+        "Steeven le dragon",
+        pointDeVie = 350,
+        pointDeVieMax = 350,
+        attaque = 100,
+        defense = 150,
+        vitesse = 200,
+        endurance = 50)
+
+    val Elfe = Personnage(
+        "Elfe Noir",
+        pointDeVie = 0,
+        pointDeVieMax = 250,
+        attaque = 150,
+        defense = 100,
+        vitesse = 150,
+        endurance = 80)
+
     //On ajoute les monstres a la liste de monstres du jeu
     val jeu = Jeu(listOf( gobelin))
     //Lancement du jeu
     jeu.lancerCombat()
+
+
+
 }
