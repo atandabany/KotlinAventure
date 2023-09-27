@@ -8,6 +8,9 @@ val qualiteRare = Qualite("rare", 1, couleur = "\u001B[34m")
 val qualiteEpic = Qualite("epic", 2, "\u001B[35m")
 val qualiteLegendaire = Qualite("legendaire", 3, "\u001B[33m")
 
+
+
+
 fun main(args: Array<String>) {
     //Instantiation des monstres
     val gobelin = Personnage(
