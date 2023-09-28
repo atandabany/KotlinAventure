@@ -6,7 +6,7 @@ import personnage.Personnage
 
 class Jeu(monstres: List<Personnage>) {
     lateinit var joueur: Personnage
-     var combats: MutableList<Combat> = mutableListOf()
+    var combats: MutableList<Combat> = mutableListOf()
     var score: Int = 0
 
     // Corps du constructeur
@@ -20,6 +20,8 @@ class Jeu(monstres: List<Personnage>) {
             combats.add(unCombat)
         }
     }
+
+
 
     fun lancerCombat() {
         for (unCombat in this.combats) {

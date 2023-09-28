@@ -10,11 +10,17 @@ class Personnage(
     var defense: Int,
     var endurance: Int,
     var vitesse: Int,
-    var inventaire : MutableList<Item> = mutableListOf()
+    var inventaire: MutableList<Item> = mutableListOf(),
+
+
     //var armePrincipale: String,
     //var armure: String,
 
 ) {
+    init {
+
+    }
+
 
      fun calculeDefense():Int{
          //TODO Mission 4.2
