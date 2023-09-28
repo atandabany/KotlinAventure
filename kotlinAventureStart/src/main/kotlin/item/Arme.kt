@@ -5,13 +5,13 @@ import jeu.TirageDes
 import personnage.Personnage
 
 /**
- * Création de la classe arme
+ * Création de la classe Arme
  */
 
-class Arme (val nom:String,
-            val description:String,
+class Arme ( nom:String,
+            description:String,
             val type:TypeArme,
-            val qualite: Qualite) {
+            val qualite: Qualite):Item(nom, description) {
     /**
      * Méthode pour calculer les degats de l'arme en fonction du Dès lancer
       */
@@ -24,12 +24,12 @@ class Arme (val nom:String,
             resultat = type.activationCritique * this.type.multiplicateurCritique
 
         }
-        return resultat+ this.qualite.bonusRarete
+        return resultat + this.qualite.bonusRarete
     }
 /**
  * Méthode pour utiliser l'arme
  */
-    fun utiliser(cible: Personnage) {
+   override fun utiliser (cible: Personnage) {
 
     }
 

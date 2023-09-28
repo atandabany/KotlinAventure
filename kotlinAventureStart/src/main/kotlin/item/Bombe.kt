@@ -6,10 +6,10 @@ import personnage.Personnage
 class Bombe (
     val nombreDeDes : Int,
     val maxDes :Int,
-    val nom :String,
-    val description :String){
+    nom :String,
+    description :String):Item(nom, description){
 
-    fun utiliser(cible :Personnage){
+    override fun utiliser(cible :Personnage){
         var tirageDes = TirageDes(this.nombreDeDes,this.maxDes)
         var resultat = tirageDes.lance()
         resultat-=cible.calculeDefense()

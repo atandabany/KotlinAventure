@@ -1,11 +1,15 @@
 package item
 
+import personnage.Personnage
+
 class Potion (
     val soins : Int,
-    val nom : String,
-    val description : String
-){
-    fun utiliser(){
+    nom : String,
+    description : String
+    ):Item(nom, description){
+
+
+     override fun utiliser(cible : Personnage){
 
     }
 }
