@@ -26,11 +26,12 @@ class Arme ( nom:String,
         }
         return resultat + this.qualite.bonusRarete
     }
-/**
- * Méthode pour utiliser l'arme
- */
-   override fun utiliser (cible: Personnage) {
-
+    /**
+     * Méthode pour utiliser l'arme.
+     * Utilisation de la methode equipe si dans l'inventaire du personnage il possède une arme
+     */
+    override fun utiliser (cible: Personnage) {
+        cible.equipe(this)
     }
 
 }

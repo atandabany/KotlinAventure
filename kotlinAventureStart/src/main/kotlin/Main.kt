@@ -8,6 +8,7 @@ val qualiteRare = Qualite("rare", 1, couleur = "\u001B[34m")
 val qualiteEpic = Qualite("epic", 2, "\u001B[35m")
 val qualiteLegendaire = Qualite("legendaire", 3, "\u001B[33m")
 
+
 // instanciation des types d'armures des objets
 val rambourre = TypeArmure("Rambourré",1)
 val cuir = TypeArmure("Cuir",2)
@@ -19,7 +20,7 @@ val cotteDeMaille = TypeArmure("Cotte de mailles", 6)
 
 //instanciation des bombes
 val grenade = Bombe(5,6,"grenade","Une contraception qui explose une fois lancée.")
-val flasquedacide= Bombe(2,8,"Flasque d'acide","Une flasque qui contient une puissante substance corrosive.")
+val flasqueAcide= Bombe(2,8,"Flasque d'acide","Une flasque qui contient une puissante substance corrosive.")
 val feuGregeois = Bombe(4,6,"Feu grégeois","Une flasque qui contient un liquide inflammable.")
 
 
@@ -33,18 +34,20 @@ val cotteMailleAdamantine = Armure("Cotte de mailles en adamantine +1","Cotte de
 val leManteauDeLaNuit = Armure("Le manteau de la nuit","Une armure en cuir obscure comme la nuit.",qualiteEpic,cuir)
 val armureDuGobelin = Armure("Armure du gobelin ","Armure en cuir rudimentaire.",qualiteCommun,cuir)
 
+
 //instanciation des types d'armes des objets
+val dague = TypeArme(1, 4, 3, 18)
+val baton = TypeArme(1, 6, 2, 20)
+val lance = TypeArme(1, 8, 3, 20)
+val arbaleteLegere = TypeArme(1, 8, 2, 19)
+val epeeCourte = TypeArme(1, 6, 2, 19)
+val hache = TypeArme(1,8,3,20)
+val epeeLongue = TypeArme(1 ,8, 2, 19)
+val marteauGuerre = TypeArme(1, 8, 3, 20)
+val arc = TypeArme(1, 8, 3, 20)
 
-/***
- * Steeven (code ici)
- */
 
 
-//instanciation des Armes
-
-/***
- * Steeven (code ici)
- */
 
 
 //Exemples d'instanciation d'objet avec M. Moulin
@@ -52,6 +55,14 @@ val typeHache= TypeArme(1,8,2,20)
 val typeArmure1=TypeArmure("armure en cuir",1)
 
 fun main(args: Array<String>) {
+    //instanciation des Armes
+
+    val epeeLongDroit = Arme("Epee longue du droit", "Une épée en fer froid", epeeLongue, qualiteRare)
+    val lanceKobold = Arme("Lance du Kobold", "Une lance rudimentaire", lance, qualiteCommun)
+
+    val tonnerre = Arme("Tonnerre", "Un marteau légendaire frappe comme la foudre", marteauGuerre, qualiteLegendaire)
+    val arcLong= Arme("arcLong", "Un arc créer pour tuer les humains", arc, qualiteRare)
+
     //Instantiation des monstres
 
     val gobelin = Personnage(
@@ -62,8 +73,10 @@ fun main(args: Array<String>) {
         defense = 4,
         vitesse = 11,
         endurance = 6,
-        inventaire = mutableListOf<Item>())
-
+        armePrincipale = null,
+        armure = null,
+        inventaire = mutableListOf<Item>(arcLong))
+    
     // TODO Intermission 1 Ajouter d'autres monstres
     val black = Personnage(
         "Black",
@@ -73,7 +86,9 @@ fun main(args: Array<String>) {
         defense = 4,
         vitesse = 11,
         endurance = 6,
-        inventaire = mutableListOf<Item>())
+        armePrincipale = lanceKobold,
+        armure = armureDuGobelin,
+        inventaire = mutableListOf<Item>(lanceKobold,armureDuGobelin))
 
     val dragon = Personnage(
         "Steeven le dragon",
@@ -83,6 +98,8 @@ fun main(args: Array<String>) {
         defense = 150,
         vitesse = 200,
         endurance = 50,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val elfe = Personnage(
@@ -93,6 +110,8 @@ fun main(args: Array<String>) {
         defense = 100,
         vitesse = 150,
         endurance = 80,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val ameEnPeine= Personnage(
@@ -103,6 +122,8 @@ fun main(args: Array<String>) {
         defense = 12,
         vitesse = 14,
         endurance = 0,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val armureAnimee= Personnage(
@@ -113,6 +134,8 @@ fun main(args: Array<String>) {
         defense = 15,
         vitesse = 6,
         endurance = 8,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val ettin= Personnage(
@@ -123,6 +146,8 @@ fun main(args: Array<String>) {
         defense = 12,
         vitesse = 8,
         endurance = 14,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val elementaireDeFeu= Personnage(
@@ -133,6 +158,8 @@ fun main(args: Array<String>) {
         defense = 10,
         vitesse = 16,
         endurance = 8,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val flagelleurMental= Personnage(
@@ -143,6 +170,8 @@ fun main(args: Array<String>) {
         defense = 7,
         vitesse = 12,
         endurance = 12,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val geleeOcre = Personnage(
@@ -153,6 +182,8 @@ fun main(args: Array<String>) {
         defense = 14,
         vitesse = 10,
         endurance = 7,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val gnoll = Personnage(
@@ -163,6 +194,8 @@ fun main(args: Array<String>) {
         defense = 8,
         vitesse = 14,
         endurance = 11,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val gorgone = Personnage(
@@ -173,6 +206,8 @@ fun main(args: Array<String>) {
         defense = 14,
         vitesse = 9,
         endurance = 14,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val hommeLezard = Personnage(
@@ -183,6 +218,8 @@ fun main(args: Array<String>) {
         defense = 13,
         vitesse = 11,
         endurance = 11,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val kraken = Personnage(
@@ -193,6 +230,8 @@ fun main(args: Array<String>) {
         defense = 15,
         vitesse = 14,
         endurance = 22,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
     val mimique = Personnage(
@@ -203,6 +242,8 @@ fun main(args: Array<String>) {
         defense = 10,
         vitesse = 12,
         endurance = 9,
+        armePrincipale = null,
+        armure = null,
         inventaire = mutableListOf<Item>())
 
 

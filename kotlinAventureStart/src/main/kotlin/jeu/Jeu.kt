@@ -2,6 +2,13 @@ package jeu
 
 import personnage.Personnage
 
+import cotteMailleAdamantine
+import dague
+import hache
+import item.Arme
+import item.Item
+import qualiteEpic
+import qualiteLegendaire
 
 
 class Jeu(monstres: List<Personnage>) {
@@ -58,6 +65,10 @@ class Jeu(monstres: List<Personnage>) {
         var ptsEndurance = 0
         var ptsVitesse = 0
         var ptsVieF = 0
+        val hache2 = Arme("Hache + 2", "Une hache tranchante", hache, qualiteEpic)
+        val edict = Arme("Edict", "Une dague légendaire en mithril", dague, qualiteLegendaire)
+        var inventaire: MutableList<Item> = mutableListOf(edict,cotteMailleAdamantine,hache2)
+        val armure= cotteMailleAdamantine
 
         println("Saisir les points de spécialité. 40 point au maximum")
         do {
@@ -93,10 +104,9 @@ class Jeu(monstres: List<Personnage>) {
         val ptsVieMin = ptsVieF + ptsVieBase
         val ptsVieFinalMax = ptsVieF + ptsVieMax
 
-        val hero = Personnage(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse)
+        val hero = Personnage(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure)
         this.joueur= hero
         println(this.joueur)
         return hero
-    }
-
+}
 }
