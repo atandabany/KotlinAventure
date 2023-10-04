@@ -35,7 +35,7 @@ class Personnage(
          * (note) si les dégats > a la défense de l'adversaire affiche minimum 1
          */
         degats -= adversaire.calculeDefense()
-        if (degats <=1){
+        if (degats <= 1) {
             degats = 1
         }
         /**
@@ -48,14 +48,13 @@ class Personnage(
     /**
      * Creation de la methode "equipe" afin d'équiper une arme
      */
-    fun equipe(uneArme : Arme){
-        if (uneArme in inventaire){
-            armePrincipale=uneArme
+    fun equipe(uneArme: Arme) {
+        if (uneArme in inventaire) {
+            armePrincipale = uneArme
             println("$nom equipe ${uneArme.nom}")
         }
 
     }
-
 
 
     // TODO Mission 5.2
@@ -65,7 +64,7 @@ class Personnage(
     fun calculeDefense(): Int {
         var result = this.defense / 2
         //TODO Mission 5.2
-        if (this.armure != null){
+        if (this.armure != null) {
             result = result + this.armure!!.calculProtection()
         }
         return result;
@@ -75,8 +74,8 @@ class Personnage(
     /**
      * Création de la méthode "equipe" pour équiper une armure
      */
-    fun equipe (uneAmure: Armure){
-        if (uneAmure in inventaire){
+    fun equipe(uneAmure: Armure) {
+        if (uneAmure in inventaire) {
             this.armure = uneAmure
             println("${this.nom} equipe ${uneAmure.nom}")
         }
@@ -106,13 +105,13 @@ class Personnage(
 
     fun boirePotion() {
 
-        var soins:Int=0
-        var nomSoins :String? =null//="BLA"
-        var pointDeVieMax= this.pointDeVieMax
+        var soins: Int = 0
+        var nomSoins: String? = null//="BLA"
+        var pointDeVieMax = this.pointDeVieMax
 
         for (item in inventaire) {
             if (item is Potion) {
-                soins= item.soins
+                soins = item.soins
                 nomSoins = item.nom
                 inventaire.remove(item)
                 break
@@ -120,20 +119,56 @@ class Personnage(
 
         }
 
-        if (this.pointDeVie+soins>=pointDeVieMax){
-            soins =this.pointDeVieMax-this.pointDeVie
-            this.pointDeVie=this.pointDeVieMax
-        }
-        else {
+        if (this.pointDeVie + soins >= pointDeVieMax) {
+            soins = this.pointDeVieMax - this.pointDeVie
+            this.pointDeVie = this.pointDeVieMax
+        } else {
             this.pointDeVie += soins
         }
 
-        print("$nomSoins a augmenté de $soins PV")
+        println("$nomSoins a augmenté de $soins PV")
 
 
     }
 
-    override fun toString(): String {
-        return "$nom (PV: $pointDeVie/$pointDeVieMax, Attaque: $attaque, Défense: $defense, Endurance: $endurance, Vitesse: $vitesse)"
+    fun afficheInventaire(monstre : Personnage) {
+        /**
+         * Affiche chaque item de l'inventaire et parcourir l'inventaire
+         */
+        println("Inventaire $nom")
+        val size = inventaire.size
+
+        /**
+         * Associé chaque numero des items à l'inventaire
+         */
+        for (i in 0..size) {
+            val item = inventaire[i]
+            println("$i => ${item.nom}")
+
+        }
+        
+
+
     }
+        /**
+         * Methode qui vérifie si les pvs sont inférieur ou égale a 0 si c'est le
+         * cas remplace arme et armure par l'objet courant
+         */
+        fun loot(cible: Personnage) {
+            if (cible.pointDeVie <= 0) {
+                armePrincipale = null
+                armure = null
+                println("${this.nom} loot ${cible.nom}")
+                println("${cible.inventaire}")
+                this.inventaire.addAll(cible.inventaire)
+
+
+            }
+        }
+
+
+        override fun toString(): String {
+            return "$nom (PV: $pointDeVie/$pointDeVieMax, Attaque: $attaque, Défense: $defense, Endurance: $endurance, Vitesse: $vitesse)"
+        }
+
 }

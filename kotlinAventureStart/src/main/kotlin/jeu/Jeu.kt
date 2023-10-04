@@ -7,6 +7,7 @@ import dague
 import hache
 import item.Arme
 import item.Item
+import potionDeSoins
 import qualiteEpic
 import qualiteLegendaire
 
@@ -67,7 +68,7 @@ class Jeu(monstres: List<Personnage>) {
         var ptsVieF = 0
         val hache2 = Arme("Hache + 2", "Une hache tranchante", hache, qualiteEpic)
         val edict = Arme("Edict", "Une dague légendaire en mithril", dague, qualiteLegendaire)
-        var inventaire: MutableList<Item> = mutableListOf(edict,cotteMailleAdamantine,hache2)
+        var inventaire: MutableList<Item> = mutableListOf(edict,cotteMailleAdamantine,hache2,potionDeSoins)
         val armure= cotteMailleAdamantine
 
         println("Saisir les points de spécialité. 40 point au maximum")
