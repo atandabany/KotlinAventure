@@ -3,7 +3,7 @@ package personnage
 import item.*
 import item.Armure
 
-class Personnage(
+open class Personnage(
     val nom: String,
     var pointDeVie: Int,
     val pointDeVieMax: Int,
@@ -100,7 +100,9 @@ class Personnage(
      */
 
     fun avoirBombe(): Boolean {
+
         var result: Boolean = false
+
         for (item in inventaire) {
             if (item is Bombe) {
                 result = true
@@ -111,6 +113,7 @@ class Personnage(
 
     /**
      * Création de la méthode "boirePotion" pour boire la  potion
+     * @param unePotion  (facultatif) la potioon que l'on souhaite boire
      */
     fun boirePotion(unePotion :Potion? =null) {
 
@@ -177,25 +180,25 @@ class Personnage(
 
 
     }
-        /**
-         * Methode qui vérifie si les pvs sont inférieur ou égale a 0 si c'est le
-         * cas remplace arme et armure par l'objet courant
-         */
-        fun loot(cible: Personnage) {
-            if (cible.pointDeVie <= 0) {
-                armePrincipale = null
-                armure = null
-                println("${this.nom} loot ${cible.nom}")
-                println("${cible.inventaire}")
-                this.inventaire.addAll(cible.inventaire)
+    /**
+     * Methode qui vérifie si les pvs sont inférieur ou égale a 0 si c'est le
+     * cas remplace arme et armure par l'objet courant
+     */
+    fun loot(cible: Personnage) {
+        if (cible.pointDeVie <= 0) {
+            armePrincipale = null
+            armure = null
+            println("${this.nom} loot ${cible.nom}")
+            println("${cible.inventaire}")
+            this.inventaire.addAll(cible.inventaire)
 
 
-            }
         }
+    }
 
 
-        override fun toString(): String {
-            return "$nom (PV: $pointDeVie/$pointDeVieMax, Attaque: $attaque, Défense: $defense, Endurance: $endurance, Vitesse: $vitesse)"
-        }
+    override fun toString(): String {
+        return "$nom (PV: $pointDeVie/$pointDeVieMax, Attaque: $attaque, Défense: $defense, Endurance: $endurance, Vitesse: $vitesse)"
+    }
 
 }
