@@ -14,6 +14,7 @@ class Armure (
         return additionProtection
     }
 
-    override fun utiliser(personnage: Personnage) {
+    override fun utiliser(joueur : Personnage) {
+        joueur.equipe(this)
     }
 }

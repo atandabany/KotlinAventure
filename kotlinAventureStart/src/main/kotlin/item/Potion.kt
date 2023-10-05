@@ -10,6 +10,6 @@ class Potion (
 
 
      override fun utiliser(cible : Personnage){
-
+         cible.boirePotion(this)
     }
 }

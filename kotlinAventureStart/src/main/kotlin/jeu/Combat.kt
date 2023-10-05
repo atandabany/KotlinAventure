@@ -1,10 +1,15 @@
 package jeu
 
+import item.Arme
+import item.Armure
+import item.Bombe
+import item.Potion
 import personnage.Personnage
 
 class Combat(
     val jeu :Jeu,
-    val monstre: Personnage
+    val monstre: Personnage,
+
 ) {
     var nombreTours: Int = 1
 
@@ -21,8 +26,16 @@ class Combat(
             "1" -> println("${this.jeu.joueur.nom} passe son tour...")
             "2" -> this.jeu.joueur.boirePotion()
             "3" -> {
-                this.jeu.joueur.afficheInventaire(monstre)
+                val posObjet = this.jeu.joueur.afficheInventaire()
+                val objet = this.jeu.joueur.inventaire[posObjet]
 
+
+                if (objet is Bombe){
+                    objet.utiliser(monstre)
+                }
+                else{
+                    objet.utiliser(this.jeu.joueur)
+                }
             }
 
         }

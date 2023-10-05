@@ -82,6 +82,9 @@ class Personnage(
     }
 
 
+    /**
+     * Création de la méthode "avoirPotion" permet de savoir si on a une potion dans l'inventaire
+     */
     //TODO Mission 5.3
     fun avoirPotion(): Boolean {
         var result: Boolean = false
@@ -92,6 +95,9 @@ class Personnage(
         }
         return result
     }
+    /**
+     * Création de la méthode "avoirBombe" permet de savoir si on a une Bombe dans l'inventaire
+     */
 
     fun avoirBombe(): Boolean {
         var result: Boolean = false
@@ -103,21 +109,32 @@ class Personnage(
         return result
     }
 
-    fun boirePotion() {
+    /**
+     * Création de la méthode "boirePotion" pour boire la  potion
+     */
+    fun boirePotion(unePotion :Potion? =null) {
 
         var soins: Int = 0
         var nomSoins: String? = null//="BLA"
         var pointDeVieMax = this.pointDeVieMax
 
-        for (item in inventaire) {
-            if (item is Potion) {
-                soins = item.soins
-                nomSoins = item.nom
-                inventaire.remove(item)
-                break
-            }
+        if(unePotion==null){
+            for (item in inventaire) {
+                if (item is Potion) {
+                    soins = item.soins
+                    nomSoins = item.nom
+                    inventaire.remove(item)
+                    break
+                }
 
+            }
         }
+        else{
+            soins = unePotion.soins
+            nomSoins = unePotion.nom
+            inventaire.remove(unePotion)
+        }
+
 
         if (this.pointDeVie + soins >= pointDeVieMax) {
             soins = this.pointDeVieMax - this.pointDeVie
@@ -131,7 +148,7 @@ class Personnage(
 
     }
 
-    fun afficheInventaire(monstre : Personnage) {
+    fun afficheInventaire():Int{
         /**
          * Affiche chaque item de l'inventaire et parcourir l'inventaire
          */
@@ -146,7 +163,17 @@ class Personnage(
             println("$i => ${item.nom}")
 
         }
-        
+
+        println("choisir un item : ")
+        var option : Int
+
+        do {
+            option = readln().toInt()
+//            option in (0..inventaire.size-1)
+        } while (option <= inventaire.size-1 && option >=0)
+        return option
+
+
 
 
     }
