@@ -18,7 +18,7 @@ open class Personnage(
 ) {
 
     // Méthode pour attaquer un adversaire
-    fun attaque(adversaire: Personnage) {
+    open fun attaque(adversaire: Personnage) {
         /**
          * Degats de base du personnage / 2
          */
@@ -48,7 +48,7 @@ open class Personnage(
     /**
      * Creation de la methode "equipe" afin d'équiper une arme
      */
-    fun equipe(uneArme: Arme) {
+    open fun equipe(uneArme: Arme) {
         if (uneArme in inventaire) {
             armePrincipale = uneArme
             println("$nom equipe ${uneArme.nom}")
@@ -161,7 +161,7 @@ open class Personnage(
         /**
          * Associé chaque numero des items à l'inventaire
          */
-        for (i in 0..size) {
+        for (i in 0..size-1) {
             val item = inventaire[i]
             println("$i => ${item.nom}")
 

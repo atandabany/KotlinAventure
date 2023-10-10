@@ -13,6 +13,7 @@ import personnage.Guerrier
 import personnage.Mage
 import personnage.Voleur
 import potionDeSoins
+import projectionAcide
 import qualiteEpic
 import qualiteLegendaire
 
@@ -115,11 +116,11 @@ class Jeu(monstres: List<Personnage>) {
         val classe = readln().toString()
         var hero = Personnage(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure)
         when(classe){
-            "0" -> {hero =Guerrier(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure)
+            "0" -> {hero =Guerrier(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,hache2,armure)
                 println("Vous êtes un Guerrier !")
             }
             "1" -> {hero = Mage(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure,
-                mutableListOf())
+                mutableListOf(projectionAcide))
                 println("Vous êtes un Mage !")
             }
             "2" -> {hero =Voleur(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure)

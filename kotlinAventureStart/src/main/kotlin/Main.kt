@@ -1,12 +1,28 @@
 import item.*
 import jeu.Jeu
+import jeu.TirageDes
 import personnage.Personnage
+import personnage.Sort
 
 //instanciation des qualités des objets
 val qualiteCommun = Qualite("commun", 0, "\u001B[32m")
 val qualiteRare = Qualite("rare", 1, couleur = "\u001B[34m")
 val qualiteEpic = Qualite("epic", 2, "\u001B[35m")
 val qualiteLegendaire = Qualite("legendaire", 3, "\u001B[33m")
+
+//initialisation des Sorts
+val projectionAcide = Sort("Sort de Projection acide" , {mage, cible ->
+    run {
+        val tirageDes = TirageDes(1,10)
+        var degat = tirageDes.lance()
+        degat = maxOf(1,degat-cible.calculeDefense())
+        cible.pointDeVie-=degat
+        println("Le jet d'acide inflige $degat a ${cible.nom}")
+    }
+})
+
+
+
 
 
 // instanciation des types d'armures des objets

@@ -17,7 +17,7 @@ class Combat(
     fun tourDeJoueur() {
         println("\u001B[34m ---Tour de ${this.jeu.joueur.nom} (pv: ${this.jeu.joueur.pointDeVie}) ---")
        //TODO Mission 1.2
-        println("Choisir une action : 0 => Attaquer ; 1 => Passer son tour ; 2 => Boire une potion")
+        println("Choisir une action : 0 => Attaquer ; 1 => Passer son tour ; 2 => Boire une potion ; 3 => Inventaire")
         val action = readln()
 
         // Permet de choisir une action en fonction du chiffre indiqué
