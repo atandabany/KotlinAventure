@@ -4,7 +4,9 @@ import item.Arme
 import item.Armure
 import item.Bombe
 import item.Potion
+import personnage.Mage
 import personnage.Personnage
+import personnage.Voleur
 
 class Combat(
     val jeu :Jeu,
@@ -38,6 +40,15 @@ class Combat(
                 }
             }
 
+            "4" -> {
+                val leMage = this.jeu.joueur as Mage
+                leMage.choisirEtLancerSort(monstre)
+            }
+
+            "5" -> {
+                val leVoleur = this.jeu.joueur as Voleur
+                leVoleur.volerItem(monstre)
+            }
         }
 
 
