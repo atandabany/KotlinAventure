@@ -1,5 +1,6 @@
 package jeu
 
+import bouleDeFeu
 import personnage.Personnage
 
 
@@ -7,8 +8,11 @@ import personnage.Personnage
 import cotteMailleAdamantine
 import dague
 import hache
+import invocationArmeMagique
+import invocationArmureMagique
 import item.Arme
 import item.Item
+import missilemagique
 import personnage.Guerrier
 import personnage.Mage
 import personnage.Voleur
@@ -16,6 +20,7 @@ import potionDeSoins
 import projectionAcide
 import qualiteEpic
 import qualiteLegendaire
+import sortDeSoins
 
 
 class Jeu(monstres: List<Personnage>) {
@@ -120,7 +125,7 @@ class Jeu(monstres: List<Personnage>) {
                 println("Vous êtes un Guerrier !")
             }
             "1" -> {hero = Mage(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure,
-                mutableListOf(projectionAcide))
+                mutableListOf(projectionAcide,sortDeSoins,invocationArmeMagique,invocationArmureMagique,bouleDeFeu,missilemagique))
                 println("Vous êtes un Mage !")
             }
             "2" -> {hero =Voleur(nomPerso,ptsVieMin,ptsVieFinalMax,totalAttaque,totalDefense,totalEnduPerso,totalVitesse,inventaire,edict,armure)

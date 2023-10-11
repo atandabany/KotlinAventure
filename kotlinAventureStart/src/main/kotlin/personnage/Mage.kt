@@ -46,7 +46,7 @@ class Mage (
         do {
             index = readln().toInt()
 
-        }while (index >= 0 || index <= grimoire.size-1)
+        }while (index < 0  || index > grimoire.size-1)
 
 
       println("choisir votre cible : [0] => vous-même ou [1] => Adversaire")
