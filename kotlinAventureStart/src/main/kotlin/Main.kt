@@ -21,6 +21,89 @@ val projectionAcide = Sort("Sort de Projection acide" , {mage, cible ->
     }
 })
 
+val sortDeSoins = Sort( "Sort de soins" , {caster , cible ->
+    run {
+        val tirageDes = TirageDes(1,6)
+        var degat = tirageDes.lance()+caster.attaque/2
+        caster.pointDeVie+=degat
+        val pvCible = cible.pointDeVie>=cible.pointDeVieMax
+
+        if (pvCible){
+            caster.pointDeVie=cible.pointDeVieMax
+        }
+
+    }
+
+}
+)
+
+val invocationArmeMagique = Sort("Invocation Arme Magique", {caster, cible ->
+    run {
+        val tirageDes = TirageDes(1,20)
+        val rarete = tirageDes.lance()
+        var qualite : Qualite? =null
+        when {
+            rarete < 5 -> qualite= qualiteCommun
+            rarete < 10 -> qualite = qualiteRare
+            rarete < 15 -> qualite = qualiteEpic
+        else -> qualite = qualiteLegendaire
+        }
+        val armeMagique = Arme("Arme magique", "Blabla c'est trop bien", epeeLongue, qualite!!)
+        caster.inventaire.add(armeMagique)
+        caster.equipe(armeMagique)
+        println("Une arme magique est ajouté à l'inventaire")
+    }
+})
+
+
+val invocationArmureMagique = Sort("Invocation Armure Magique", {caster, cible ->
+    run {
+        val tirageDes = TirageDes(1,20)
+        val rarete = tirageDes.lance()
+        var qualite : Qualite? =null
+        when {
+            rarete < 5 -> qualite= qualiteCommun
+            rarete < 10 -> qualite = qualiteRare
+            rarete < 15 -> qualite = qualiteEpic
+            else -> qualite = qualiteLegendaire
+        }
+        val armureMagique = Armure("Armure magique", "BlablaBla...", qualite!!, cuir)
+        caster.inventaire.add(armureMagique)
+        caster.equipe(armureMagique)
+        println("Une armure magique est ajouté à l'inventaire")
+    }
+})
+
+
+val bouleDeFeu = Sort("Boule de feu", {mage, cible ->
+    run {
+        val degatCaster = mage.attaque/3
+        val tirageDes = TirageDes(1, 6)
+        var degat = tirageDes.lance()
+        degat += degatCaster
+        degat -= cible.calculeDefense()
+        cible.pointDeVie-=degat
+        println("Lance une boule de feu et inflige $degat a ${cible.nom}")
+    }
+})
+
+val missilemagique = Sort("Missile magique", {mage, cible ->
+    run {
+        var compteur = 0
+        var degatCaster = mage.attaque/2
+        val tirageDes = TirageDes(1, 6)
+        if(compteur < degatCaster){
+            var degat = tirageDes.lance()
+            degat -= cible.calculeDefense()
+            if (degat<=1){
+                degat = 1
+            }
+            cible.pointDeVie-=degat
+            println("Le projectile magique inflige $degat a ${cible.nom}")
+            compteur+1
+        }
+    }
+})
 
 
 
