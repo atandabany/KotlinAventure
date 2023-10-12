@@ -2,7 +2,12 @@ package personnage
 
 import item.*
 
-class Voleur (
+/**
+ * @author Adrien
+ * Class Voleur issu de l'héritage Personnage
+ */
+
+class Voleur(
     nom: String,
     pointDeVie: Int,
     pointDeVieMax: Int,
@@ -13,8 +18,26 @@ class Voleur (
     inventaire: MutableList<Item> = mutableListOf(),
     armePrincipale: Arme?,
     armure: Armure?
-):Personnage(nom,pointDeVie,pointDeVieMax,attaque,defense,endurance,vitesse,inventaire,armePrincipale,armure) {
-
+) : Personnage(
+    nom,
+    pointDeVie,
+    pointDeVieMax,
+    attaque,
+    defense,
+    endurance,
+    vitesse,
+    inventaire,
+    armePrincipale,
+    armure
+) {
+    /**
+     * @author Adrien
+     * @param cible
+     * Méthode volerItem permet de vérifier si l'adversaire a un item dans son inventaire
+     * si c'est le cas un objet est choisi aléatoirement dans l'inventaire de la cible
+     * l'objet sera supprimé dans son inventaire et de son armePrincipale et sera attribué
+     * dans l'inventaire du joueur
+     */
     fun volerItem(cible: Personnage) {
         if (cible.inventaire.isNotEmpty()) {
             var positionObjet = (1..cible.inventaire.size).random()
@@ -39,12 +62,12 @@ class Voleur (
                 this.inventaire.add(cible.inventaire[positionObjet])
             }
             println("L'objet ${objet.nom} a été volé et a été ajouté dans l'inventaire")
-        }
-        else
+        } else
             println("L'inventaire de la cible est vide")
 
-
-//
+        /**
+         * Méthode proposer par M. Moulin
+         */
 ////                this.inventaire.add(objet)
 ////                cible.inventaire.remove(objet)
 ////
@@ -56,9 +79,6 @@ class Voleur (
 //                }
 ////                    this.inventaire.add(cible.inventaire[positionObjet]
 //                }
-//            }
-//        }
-
-        }
     }
+}
 

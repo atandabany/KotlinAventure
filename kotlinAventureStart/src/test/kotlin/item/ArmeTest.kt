@@ -10,11 +10,11 @@ import qualiteRare
 class ArmeTest {
 
     @Test
-    fun calculerDegat(){
-        val uneHache=Arme("hache +1","",typeHache,qualiteRare)
-        var result=uneHache.calculerDegats()
-        Assertions.assertTrue(result>=2)
-        Assertions.assertTrue(result<=17)
+    fun calculerDegat() {
+        val uneHache = Arme("hache +1", "", typeHache, qualiteRare)
+        var result = uneHache.calculerDegats()
+        Assertions.assertTrue(result >= 2)
+        Assertions.assertTrue(result <= 17)
 
     }
 }

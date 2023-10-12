@@ -21,9 +21,8 @@ internal class TirageDesTest {
         // ou
         //Assertions.assertTrue(resultat in (3..27))
 
-        Assertions.assertEquals("","")
-        Assertions.assertNotEquals("a",'a')
+        Assertions.assertEquals("", "")
+        Assertions.assertNotEquals("a", 'a')
         Assertions.assertNotNull("machin")
-
     }
 }

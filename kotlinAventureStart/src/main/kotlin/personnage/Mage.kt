@@ -4,8 +4,14 @@ import item.Arme
 import item.Armure
 import item.Item
 
-class Mage (
-    nom:String,
+/**
+ * @author Deva
+ * @param
+ * Class Mage avec ses attributs issu de l'héritage Personnage
+ */
+
+class Mage(
+    nom: String,
     pointDeVie: Int,
     pointDeVieMax: Int,
     attaque: Int,
@@ -15,51 +21,55 @@ class Mage (
     inventaire: MutableList<Item> = mutableListOf(),
     armePrincipale: Arme?,
     armure: Armure?,
-    var grimoire : MutableList<Sort> = mutableListOf()
+    var grimoire: MutableList<Sort> = mutableListOf()
 
-) :Personnage(nom,pointDeVie,pointDeVieMax,attaque,
-    defense,endurance,vitesse,inventaire,armePrincipale,armure){
+) : Personnage(
+    nom, pointDeVie, pointDeVieMax, attaque,
+    defense, endurance, vitesse, inventaire, armePrincipale, armure
+) {
 
     /**
-     *  Méthode pour afficher la liste des Sort du joueur
-     *  @author Deva
+     * @author Devamadushan
+     * Méthode pour afficher la liste des Sort du joueur
      */
-    fun afficheGrimoire(){
+    fun afficheGrimoire() {
 
-        for (i in 0..grimoire.size-1){
+        for (i in 0..grimoire.size - 1) {
             println("[$i] => ${grimoire[i].nom}")
         }
     }
 
     /**
-     *  Méthode pour choisir un Sort et lancer sur un Cible
      * @param adversaire pour connaitre la cible
      * @author Deva
+     * Méthode pour choisir un Sort et lancer sur un Cible
+     * do while permet de choisir un nombre qui est dans le grimoire
+     * when défini si le sort est utilisé sur le joueur ou le monstre
      */
 
-    fun choisirEtLancerSort(adversaire:Personnage){
+    fun choisirEtLancerSort(adversaire: Personnage) {
         val affiche = afficheGrimoire()
 
         println("Choisir un sort a lancer (entrez le numéro)")
-        var index :Int
+        var index: Int
 
         do {
             index = readln().toInt()
 
-        }while (index < 0  || index > grimoire.size-1)
+        } while (index < 0 || index > grimoire.size - 1)
 
 
-      println("choisir votre cible : [0] => vous-même ou [1] => Adversaire")
-        var laCible:Personnage=this;
+        println("choisir votre cible : [0] => vous-même ou [1] => Adversaire")
+        var laCible: Personnage = this;
         var cible = readln().toInt()
 
-        when(cible){
+        when (cible) {
             0 -> laCible = this
             1 -> laCible = adversaire
             else -> print("Erreur")
         }
 
-       val test= this.grimoire[index].effect(this,laCible)
+        val utiliser = this.grimoire[index].effect(this, laCible)
 
     }
 

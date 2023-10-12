@@ -13,9 +13,9 @@ class ArmureTest {
 
     fun calculProtection() {
         //creation d'un objet armure de type Armure
-        val armure= Armure("","",qualiteCommun,typeArmure1)
-        val result= armure.calculProtection()
-        Assertions.assertEquals(1,result)
+        val armure = Armure("", "", qualiteCommun, typeArmure1)
+        val result = armure.calculProtection()
+        Assertions.assertEquals(1, result)
     }
 
 

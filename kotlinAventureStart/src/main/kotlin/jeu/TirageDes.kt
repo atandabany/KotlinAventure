@@ -1,8 +1,12 @@
 package jeu
 
-class TirageDes(val nbDe:Int, val maxDe:Int) {
-
-    fun lance():Int{
+class TirageDes(val nbDe: Int, val maxDe: Int) {
+    /**
+     * @author M. Moulin
+     * @return La somme des faces du dès et le resultat aléatoire obtenu
+     * Méthode pour lancer les Dés
+     */
+    fun lance(): Int {
         // Si on lance 3d8
         // nbDe = 3 correspond au nombre de dés que l'on souhaite lancer
         // maxDe = 8 correspond au nombre de face du dé et aussi a la valeur maximum du dé
@@ -14,9 +18,9 @@ class TirageDes(val nbDe:Int, val maxDe:Int) {
         // on lance le troisème dé on fait un 8
         // resultat = 15
         // la méthode retourne 15
-        var resultat=0
-        repeat(this.nbDe){
-            resultat+=(1..this.maxDe).random()
+        var resultat = 0
+        repeat(this.nbDe) {
+            resultat += (1..this.maxDe).random()
         }
         return resultat
     }

@@ -12,46 +12,42 @@ open class Personnage(
     var endurance: Int,
     var vitesse: Int,
     var inventaire: MutableList<Item> = mutableListOf(),
-    var armePrincipale:Arme?,
+    var armePrincipale: Arme?,
     var armure: Armure?
 
 ) {
 
-    // Méthode pour attaquer un adversaire
+    /**
+     * @author Steeven
+     * @param adversaire
+     * Méthode pour attaquer un adversaire
+     * if armePrincipale vérifie si le joueur possède une arme ou non si c'est le cas calcule les degats
+     * A savoir : degat est toujours = 1
+     */
+
     open fun attaque(adversaire: Personnage) {
-        /**
-         * Degats de base du personnage / 2
-         */
         var degats = this.attaque / 2
-        /**
-         * Vérifie si le personnage possède une arme, si il possède une arme
-         * calcule les degats en fontion des dégats de l'arme
-         */
         if (armePrincipale != null) {
             degats += this.armePrincipale!!.calculerDegats()
         }
-        /**
-         * Ajuste les degats de l'adversaire en fonction de sa défense
-         * (note) si les dégats > a la défense de l'adversaire affiche minimum 1
-         */
         degats -= adversaire.calculeDefense()
         if (degats <= 1) {
             degats = 1
         }
-        /**
-         * Degats sur l'adversaire dépend de ses points de vie
-         */
         adversaire.pointDeVie -= degats
         println("$nom attaque ${adversaire.nom} avec une attaque de base et inflige $degats points de dégâts.")
     }
 
     /**
+     * @author Steeven
+     * @param uneArme
      * Creation de la methode "equipe" afin d'équiper une arme
+     * if vérifie si dans l'inventaire il existe une arme
      */
     open fun equipe(uneArme: Arme) {
         if (uneArme in inventaire) {
             armePrincipale = uneArme
-            println("$nom equipe ${uneArme.nom}")
+            println("$nom équipe « ${uneArme.nom} ».")
         }
 
     }
@@ -59,7 +55,9 @@ open class Personnage(
 
     // TODO Mission 5.2
     /**
+     * @author Adrien
      * Méthode qui permet d'additionner les caractéristiques de l'armure à la défense total du personnage
+     * @return result
      */
     fun calculeDefense(): Int {
         var result = this.defense / 2
@@ -72,6 +70,8 @@ open class Personnage(
 
 
     /**
+     * @author Adrien
+     * @param uneAmure
      * Création de la méthode "equipe" pour équiper une armure
      */
     fun equipe(uneAmure: Armure) {
@@ -83,7 +83,9 @@ open class Personnage(
 
 
     /**
+     * @author Devamadushan
      * Création de la méthode "avoirPotion" permet de savoir si on a une potion dans l'inventaire
+     * @return result
      */
     //TODO Mission 5.3
     fun avoirPotion(): Boolean {
@@ -95,8 +97,11 @@ open class Personnage(
         }
         return result
     }
+
     /**
+     * @author Devamadushan
      * Création de la méthode "avoirBombe" permet de savoir si on a une Bombe dans l'inventaire
+     * @return result
      */
 
     fun avoirBombe(): Boolean {
@@ -112,16 +117,17 @@ open class Personnage(
     }
 
     /**
+     * @author Devamadushan
      * Création de la méthode "boirePotion" pour boire la  potion
      * @param unePotion  (facultatif) la potioon que l'on souhaite boire
      */
-    fun boirePotion(unePotion :Potion? =null) {
+    fun boirePotion(unePotion: Potion? = null) {
 
         var soins: Int = 0
         var nomSoins: String? = null//="BLA"
         var pointDeVieMax = this.pointDeVieMax
 
-        if(unePotion==null){
+        if (unePotion == null) {
             for (item in inventaire) {
                 if (item is Potion) {
                     soins = item.soins
@@ -131,8 +137,7 @@ open class Personnage(
                 }
 
             }
-        }
-        else{
+        } else {
             soins = unePotion.soins
             nomSoins = unePotion.nom
             inventaire.remove(unePotion)
@@ -151,36 +156,37 @@ open class Personnage(
 
     }
 
-    fun afficheInventaire():Int{
-        /**
-         * Affiche chaque item de l'inventaire et parcourir l'inventaire
-         */
+    /**
+     * @author Steeven
+     * Création de la méthode afficheInventaire pour afficher chaque item de l'inventaire
+     * .size parcours l'inventaire
+     * for permet d'associé chaque numero a chaque item de l'inventaire
+     * @return option
+     */
+    fun afficheInventaire(): Int {
         println("Inventaire $nom")
         val size = inventaire.size
 
-        /**
-         * Associé chaque numero des items à l'inventaire
-         */
-        for (i in 0..size-1) {
+        for (i in 0..size - 1) {
             val item = inventaire[i]
             println("$i => ${item.nom}")
 
         }
 
         println("choisir un item : ")
-        var option : Int
+        var option: Int
 
         do {
             option = readln().toInt()
 //            option in (0..inventaire.size-1)
-        } while (option <= inventaire.size-1 && option >=0)
+        } while (option <= inventaire.size - 1 && option >= 0)
         return option
 
 
-
-
     }
+
     /**
+     * @author Steeven
      * Methode qui vérifie si les pvs sont inférieur ou égale a 0 si c'est le
      * cas remplace arme et armure par l'objet courant
      */

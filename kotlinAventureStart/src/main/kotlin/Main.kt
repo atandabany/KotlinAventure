@@ -10,59 +10,62 @@ val qualiteRare = Qualite("rare", 1, couleur = "\u001B[34m")
 val qualiteEpic = Qualite("epic", 2, "\u001B[35m")
 val qualiteLegendaire = Qualite("legendaire", 3, "\u001B[33m")
 
-//initialisation des Sorts
-val projectionAcide = Sort("Sort de Projection acide" , {mage, cible ->
+//instanciation du sort 'Sort d'Acide' qui permet de faire des dégats
+val projectionAcide = Sort("Sort de Projection acide") { mage, cible ->
     run {
-        val tirageDes = TirageDes(1,10)
+        val tirageDes = TirageDes(1, 10)
         var degat = tirageDes.lance()
-        degat = maxOf(1,degat-cible.calculeDefense())
-        cible.pointDeVie-=degat
+        degat = maxOf(1, degat - cible.calculeDefense())
+        cible.pointDeVie -= degat
         println("Le jet d'acide inflige $degat a ${cible.nom}")
     }
-})
+}
 
-val sortDeSoins = Sort( "Sort de soins" , {caster , cible ->
+//instanciation du sort 'Sort de soins' qui permet de recupérer des points de vie
+val sortDeSoins = Sort("Sort de soins") { caster, cible ->
     run {
-        val tirageDes = TirageDes(1,6)
-        var degat = tirageDes.lance()+caster.attaque/2
-        caster.pointDeVie+=degat
-        val pvCible = cible.pointDeVie>=cible.pointDeVieMax
+        val tirageDes = TirageDes(1, 6)
+        var degat = tirageDes.lance() + (caster.attaque / 2)
 
-        if (pvCible){
-            caster.pointDeVie=cible.pointDeVieMax
+        val pv = caster.pointDeVieMax - caster.pointDeVie
+
+        if (degat > pv) {
+
+            degat = pv
         }
-
+        caster.pointDeVie += degat
+        println("${caster.nom} a utilisé un « Sort de soins » et a récupéré $degat point(s) de vie !")
     }
 
 }
-)
 
-val invocationArmeMagique = Sort("Invocation Arme Magique", {caster, cible ->
+//instanciation de l'Arme Magique, permet d'invoquer une arme avec une qualité qui est choisie aléatoirement en fonction du tirage dès
+val invocationArmeMagique = Sort("Invocation Arme Magique") { caster, cible ->
     run {
-        val tirageDes = TirageDes(1,20)
+        val tirageDes = TirageDes(1, 20)
         val rarete = tirageDes.lance()
-        var qualite : Qualite? =null
+        var qualite: Qualite? = null
         when {
-            rarete < 5 -> qualite= qualiteCommun
+            rarete < 5 -> qualite = qualiteCommun
             rarete < 10 -> qualite = qualiteRare
             rarete < 15 -> qualite = qualiteEpic
-        else -> qualite = qualiteLegendaire
+            else -> qualite = qualiteLegendaire
         }
-        val armeMagique = Arme("Arme magique", "Blabla c'est trop bien", epeeLongue, qualite!!)
+        val armeMagique = Arme("Arme Magique", "Blabla c'est trop bien", epeeLongue, qualite!!)
         caster.inventaire.add(armeMagique)
         caster.equipe(armeMagique)
-        println("Une arme magique est ajouté à l'inventaire")
+        println("Une « Arme Magique » a été ajoutée à l'inventaire.")
     }
-})
+}
 
-
-val invocationArmureMagique = Sort("Invocation Armure Magique", {caster, cible ->
+//instanciation l'Armure Magique, permet d'invoquer une armure avec une qualité qui est choisie aléatoirement en fonction du tirage dès
+val invocationArmureMagique = Sort("Invocation Armure Magique") { caster, cible ->
     run {
-        val tirageDes = TirageDes(1,20)
+        val tirageDes = TirageDes(1, 20)
         val rarete = tirageDes.lance()
-        var qualite : Qualite? =null
+        var qualite: Qualite? = null
         when {
-            rarete < 5 -> qualite= qualiteCommun
+            rarete < 5 -> qualite = qualiteCommun
             rarete < 10 -> qualite = qualiteRare
             rarete < 15 -> qualite = qualiteEpic
             else -> qualite = qualiteLegendaire
@@ -70,68 +73,69 @@ val invocationArmureMagique = Sort("Invocation Armure Magique", {caster, cible -
         val armureMagique = Armure("Armure magique", "BlablaBla...", qualite!!, cuir)
         caster.inventaire.add(armureMagique)
         caster.equipe(armureMagique)
-        println("Une armure magique est ajouté à l'inventaire")
+        println("Une armure magique est ajoutée à l'inventaire")
     }
-})
+}
 
 
-val bouleDeFeu = Sort("Boule de feu", {mage, cible ->
+//instanciation du sort 'Boule de feu' qui permet de faire des dégats
+val sortBouleDeFeu = Sort("Boule de feu") { caster, cible ->
     run {
-        val degatCaster = mage.attaque/3
+        val degatCaster = caster.attaque / 3
         val tirageDes = TirageDes(1, 6)
         var degat = tirageDes.lance()
         degat += degatCaster
         degat -= cible.calculeDefense()
-        cible.pointDeVie-=degat
-        println("Lance une boule de feu et inflige $degat a ${cible.nom}")
+        cible.pointDeVie -= degat
+        println("${caster.nom} lance une « Boule de feu » et inflige $degat de dégat(s) à ${cible.nom}.")
     }
-})
+}
 
-val missilemagique = Sort("Missile magique", {mage, cible ->
+//instanciation du sort 'Missile magique' qui lance des missile sur l'adversaire
+val missileMagique = Sort("Missile magique") { caster, cible ->
     run {
         var compteur = 0
-        var degatCaster = mage.attaque/2
+        var degatCaster = caster.attaque / 2
         val tirageDes = TirageDes(1, 6)
-        if(compteur < degatCaster){
+        if (compteur < degatCaster) {
             var degat = tirageDes.lance()
             degat -= cible.calculeDefense()
-            if (degat<=1){
+            if (degat <= 1) {
                 degat = 1
             }
-            cible.pointDeVie-=degat
-            println("Le projectile magique inflige $degat a ${cible.nom}")
-            compteur+1
+            cible.pointDeVie -= degat
+            println("Le « Projectile Magique » inflige $degat de dégat(s) à ${cible.nom}.")
+            compteur + 1
         }
     }
-})
-
-
+}
 
 
 // instanciation des types d'armures des objets
-val rambourre = TypeArmure("Rambourré",1)
-val cuir = TypeArmure("Cuir",2)
-val cuirCloute=TypeArmure("Cuire Clouté",3)
+val rambourre = TypeArmure("Rambourré", 1)
+val cuir = TypeArmure("Cuir", 2)
+val cuirCloute = TypeArmure("Cuire Clouté", 3)
 val chemiseChaine = TypeArmure("Chemise à chaîne", 4)
-val  pectoral = TypeArmure("Pectoral", 5)
+val pectoral = TypeArmure("Pectoral", 5)
 val cotteDeMaille = TypeArmure("Cotte de mailles", 6)
 
 
 //instanciation des bombes
-val grenade = Bombe(5,6,"grenade","Une contraception qui explose une fois lancée.")
-val flasqueAcide= Bombe(2,8,"Flasque d'acide","Une flasque qui contient une puissante substance corrosive.")
-val feuGregeois = Bombe(4,6,"Feu grégeois","Une flasque qui contient un liquide inflammable.")
+val grenade = Bombe(5, 6, "grenade", "Une contraception qui explose une fois lancée.")
+val flasqueAcide = Bombe(2, 8, "Flasque d'acide", "Une flasque qui contient une puissante substance corrosive.")
+val feuGregeois = Bombe(4, 6, "Feu grégeois", "Une flasque qui contient un liquide inflammable.")
 
 
 // instanciation des potions
-val potionDeSoins = Potion(20,"Potions de soins","Une potion qui contient un liquide rouge.")
-val grandePotionDeSoins = Potion(30,"Grande potion de soins","Une grande potion qui contient un liquide rouge.")
+val potionDeSoins = Potion(20, "Potions de soins", "Une potion qui contient un liquide rouge.")
+val grandePotionDeSoins = Potion(30, "Grande potion de soins", "Une grande potion qui contient un liquide rouge.")
 
 
 //instanciation des armures
-val cotteMailleAdamantine = Armure("Cotte de mailles en adamantine +1","Cotte de mailles plus lourde mais aussi plus solide.",qualiteRare,cotteDeMaille)
-val leManteauDeLaNuit = Armure("Le manteau de la nuit","Une armure en cuir obscure comme la nuit.",qualiteEpic,cuir)
-val armureDuGobelin = Armure("Armure du gobelin ","Armure en cuir rudimentaire.",qualiteCommun,cuir)
+val cotteMailleAdamantine = Armure("Cotte de mailles en adamantine +1", "Cotte de mailles plus lourde mais aussi plus solide.", qualiteRare, cotteDeMaille)
+val leManteauDeLaNuit = Armure("Le manteau de la nuit", "Une armure en cuir obscure comme la nuit.", qualiteEpic, cuir)
+val armure = Armure("Armure du gobelin ", "Armure en cuir rudimentaire.", qualiteCommun, cuir)
+val armureDuGobelin = Armure("Armure du gobelin ", "Armure en cuir rudimentaire.", qualiteCommun, cuir)
 
 
 //instanciation des types d'armes des objets
@@ -140,18 +144,15 @@ val baton = TypeArme(1, 6, 2, 20)
 val lance = TypeArme(1, 8, 3, 20)
 val arbaleteLegere = TypeArme(1, 8, 2, 19)
 val epeeCourte = TypeArme(1, 6, 2, 19)
-val hache = TypeArme(1,8,3,20)
-val epeeLongue = TypeArme(1 ,8, 2, 19)
+val hache = TypeArme(1, 8, 3, 20)
+val epeeLongue = TypeArme(1, 8, 2, 19)
 val marteauGuerre = TypeArme(1, 8, 3, 20)
 val arc = TypeArme(1, 8, 3, 20)
 
 
-
-
-
 //Exemples d'instanciation d'objet avec M. Moulin
-val typeHache= TypeArme(1,8,2,20)
-val typeArmure1=TypeArmure("armure en cuir",1)
+val typeHache = TypeArme(1, 8, 2, 20)
+val typeArmure1 = TypeArmure("armure en cuir", 1)
 
 fun main(args: Array<String>) {
     //instanciation des Armes
@@ -160,10 +161,10 @@ fun main(args: Array<String>) {
     val lanceKobold = Arme("Lance du Kobold", "Une lance rudimentaire", lance, qualiteCommun)
 
     val tonnerre = Arme("Tonnerre", "Un marteau légendaire frappe comme la foudre", marteauGuerre, qualiteLegendaire)
-    val arcLong= Arme("arcLong", "Un arc créer pour tuer les humains", arc, qualiteRare)
+    val arcLong = Arme("arcLong", "Un arc créer pour tuer les humains", arc, qualiteRare)
+
 
     //Instantiation des monstres
-
     val gobelin = Personnage(
         "XXX le gobelin",
         pointDeVie = 20,
@@ -174,8 +175,9 @@ fun main(args: Array<String>) {
         endurance = 6,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>(arcLong))
-    
+        inventaire = mutableListOf<Item>(arcLong)
+    )
+
     // TODO Intermission 1 Ajouter d'autres monstres
     val black = Personnage(
         "Black",
@@ -187,7 +189,8 @@ fun main(args: Array<String>) {
         endurance = 6,
         armePrincipale = lanceKobold,
         armure = armureDuGobelin,
-        inventaire = mutableListOf<Item>(lanceKobold,armureDuGobelin))
+        inventaire = mutableListOf<Item>(lanceKobold, armureDuGobelin)
+    )
 
     val dragon = Personnage(
         "Steeven le dragon",
@@ -199,7 +202,8 @@ fun main(args: Array<String>) {
         endurance = 50,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val elfe = Personnage(
         "Elfe Noir",
@@ -211,9 +215,10 @@ fun main(args: Array<String>) {
         endurance = 80,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
-    val ameEnPeine= Personnage(
+    val ameEnPeine = Personnage(
         "Ale en peine",
         pointDeVie = 67,
         pointDeVieMax = 67,
@@ -223,9 +228,10 @@ fun main(args: Array<String>) {
         endurance = 0,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
-    val armureAnimee= Personnage(
+    val armureAnimee = Personnage(
         "Armure animée",
         pointDeVie = 33,
         pointDeVieMax = 33,
@@ -235,9 +241,10 @@ fun main(args: Array<String>) {
         endurance = 8,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
-    val ettin= Personnage(
+    val ettin = Personnage(
         "Ettin",
         pointDeVie = 88,
         pointDeVieMax = 88,
@@ -247,9 +254,10 @@ fun main(args: Array<String>) {
         endurance = 14,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
-    val elementaireDeFeu= Personnage(
+    val elementaireDeFeu = Personnage(
         "Élémentaire du feu",
         pointDeVie = 102,
         pointDeVieMax = 102,
@@ -259,9 +267,10 @@ fun main(args: Array<String>) {
         endurance = 8,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
-    val flagelleurMental= Personnage(
+    val flagelleurMental = Personnage(
         "Flagelleur mental",
         pointDeVie = 71,
         pointDeVieMax = 71,
@@ -271,7 +280,8 @@ fun main(args: Array<String>) {
         endurance = 12,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val geleeOcre = Personnage(
         "Gelée ocre",
@@ -283,7 +293,8 @@ fun main(args: Array<String>) {
         endurance = 7,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val gnoll = Personnage(
         "Gnoll",
@@ -295,7 +306,8 @@ fun main(args: Array<String>) {
         endurance = 11,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val gorgone = Personnage(
         "Gorgone",
@@ -307,7 +319,8 @@ fun main(args: Array<String>) {
         endurance = 14,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val hommeLezard = Personnage(
         "Homme-Lézard",
@@ -319,7 +332,8 @@ fun main(args: Array<String>) {
         endurance = 11,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val kraken = Personnage(
         "Kraken",
@@ -331,7 +345,8 @@ fun main(args: Array<String>) {
         endurance = 22,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
     val mimique = Personnage(
         "Mimique",
@@ -343,14 +358,12 @@ fun main(args: Array<String>) {
         endurance = 9,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>())
+        inventaire = mutableListOf<Item>()
+    )
 
 
     //On ajoute les monstres a la liste de monstres du jeu
-    val jeu = Jeu(listOf( gobelin,mimique))
+    val jeu = Jeu(listOf(gobelin, mimique))
     //Lancement du jeu
     jeu.lancerCombat()
-
-
-
 }
