@@ -1,0 +1,44 @@
+= Titre
+:toc-title: Tables des matières
+:toc: top
+:toclevels: 4
+
+== Partie 1
+=== Sous partie 1
+==== Sous sous partie
+===== Sous sous sous partie
+
+Voici un exemple de code inline : `int x = 5;`
+
+[source,lang]
+----
+int main() {
+    printf("Bonjour, monde!\n");
+    return 0;
+}
+----
+'' '
+''''
+
+
+'''
+
+
+'''
+The hail-and-rainbow protocol can be initiated at five levels:
+
+
+A bold statement!footnote:disclaimer[Opinions are my own.]
+
+Another outrageous statement.footnote:test[TEST]
+
+
+[IMPORTANT]
+.Feeding the Werewolves
+====
+While werewolves are hardy community members, keep in mind the following dietary concerns:
+
+. They are allergic to cinnamon.
+. More than two glasses of orange juice in 24 hours makes them howl in harmony with alarms and sirens.
+. Celery makes them sad.
+====

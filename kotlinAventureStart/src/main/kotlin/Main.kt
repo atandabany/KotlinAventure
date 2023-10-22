@@ -175,7 +175,7 @@ fun main(args: Array<String>) {
         endurance = 6,
         armePrincipale = null,
         armure = null,
-        inventaire = mutableListOf<Item>(arcLong)
+        inventaire = mutableListOf<Item>(arcLong,potionDeSoins,armure)
     )
 
     // TODO Intermission 1 Ajouter d'autres monstres

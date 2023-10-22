@@ -44,19 +44,15 @@ class Combat(
                     objet.utiliser(this.jeu.joueur)
                 }
             }
-
             "4" -> {
                 val leMage = this.jeu.joueur as Mage
                 leMage.choisirEtLancerSort(monstre)
             }
-
             "5" -> {
                 val leVoleur = this.jeu.joueur as Voleur
                 leVoleur.volerItem(monstre)
             }
         }
-
-
         println("\u001b[0m")
     }
 

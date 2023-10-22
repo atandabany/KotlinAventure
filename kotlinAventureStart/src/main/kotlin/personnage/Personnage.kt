@@ -17,6 +17,7 @@ open class Personnage(
 
 ) {
 
+
     /**
      * @author Steeven
      * @param adversaire
@@ -49,11 +50,9 @@ open class Personnage(
             armePrincipale = uneArme
             println("$nom équipe « ${uneArme.nom} ».")
         }
-
     }
 
 
-    // TODO Mission 5.2
     /**
      * @author Adrien
      * Méthode qui permet d'additionner les caractéristiques de l'armure à la défense total du personnage
@@ -61,7 +60,6 @@ open class Personnage(
      */
     fun calculeDefense(): Int {
         var result = this.defense / 2
-        //TODO Mission 5.2
         if (this.armure != null) {
             result = result + this.armure!!.calculProtection()
         }
@@ -87,7 +85,6 @@ open class Personnage(
      * Création de la méthode "avoirPotion" permet de savoir si on a une potion dans l'inventaire
      * @return result
      */
-    //TODO Mission 5.3
     fun avoirPotion(): Boolean {
         var result: Boolean = false
         for (item in inventaire) {
@@ -103,7 +100,6 @@ open class Personnage(
      * Création de la méthode "avoirBombe" permet de savoir si on a une Bombe dans l'inventaire
      * @return result
      */
-
     fun avoirBombe(): Boolean {
 
         var result: Boolean = false
@@ -179,7 +175,7 @@ open class Personnage(
         do {
             option = readln().toInt()
 //            option in (0..inventaire.size-1)
-        } while (option <= inventaire.size - 1 && option >= 0)
+        } while (option > inventaire.size - 1 && option < 0)
         return option
 
 
@@ -202,9 +198,7 @@ open class Personnage(
         }
     }
 
-
     override fun toString(): String {
         return "$nom (PV: $pointDeVie/$pointDeVieMax, Attaque: $attaque, Défense: $defense, Endurance: $endurance, Vitesse: $vitesse)"
     }
-
 }

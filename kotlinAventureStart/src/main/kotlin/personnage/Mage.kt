@@ -50,7 +50,7 @@ class Mage(
     fun choisirEtLancerSort(adversaire: Personnage) {
         val affiche = afficheGrimoire()
 
-        println("Choisir un sort a lancer (entrez le numéro)")
+        println("Choisir un sort 0 lancer (entrez le numéro)")
         var index: Int
 
         do {
@@ -59,7 +59,7 @@ class Mage(
         } while (index < 0 || index > grimoire.size - 1)
 
 
-        println("choisir votre cible : [0] => vous-même ou [1] => Adversaire")
+        println("Choisir votre cible : [0] => Vous-même OU [1] => Adversaire")
         var laCible: Personnage = this;
         var cible = readln().toInt()
 
