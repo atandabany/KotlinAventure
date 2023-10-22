@@ -15,9 +15,9 @@ Projet réalisé par : +
 == *Contexte:*
 
 [.text-justify]
-----
+****
 Dans le cadre de notre projet Kotlin Aventure, l’objectif était de nouspermettre d’utiliser nos connaissances avec le langage Kotlin acquis en cours et de les développer tout en respectant le cahier des charges.
-----
+****
 
 === Introduction :
 
