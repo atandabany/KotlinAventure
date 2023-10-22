@@ -32,7 +32,7 @@ A bold statement!footnote:disclaimer[Opinions are my own.]
 
 Another outrageous statement.footnote:test[TEST]
 
-
+<<<
 [IMPORTANT]
 .Feeding the Werewolves
 ====
@@ -42,3 +42,72 @@ While werewolves are hardy community members, keep in mind the following dietary
 . More than two glasses of orange juice in 24 hours makes them howl in harmony with alarms and sirens.
 . Celery makes them sad.
 ====
+
+lES CLASSE BLABLA LE WHEN SERT A CA
+
+
+[cols="1,1,1"]
+|===
+|Classe Guerrier |Classe Mage |Classe Voleur
+
+|"0" -> { +
+hero = Guerrier( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+hache2, +
+armure) +
+println("Vous êtes un Guerrier !")
+}
+
+
+| "1" -> {
+hero = Mage( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+armure, +
+mutableListOf(
+projectionAcide,
+sortDeSoins,
+invocationArmeMagique,
+invocationArmureMagique,
+sortBouleDeFeu,
+missileMagique) +
+) +
+println("Vous êtes un Mage !")
+}
+
+|"2" -> { +
+hero = Voleur( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+armure) +
+println("Vous êtes un Voleur !")
+}
+
+|On ajoute l'attribut hache2 +
+Affiche le nom de classe Guerrier
+|On ajoute la mutable list pour les sorts +
+Affiche le nom de classe Mage
+|Affiche le nom de la classe Voleur
+|===

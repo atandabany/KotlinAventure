@@ -36,7 +36,6 @@ val sortDeSoins = Sort("Sort de soins") { caster, cible ->
         caster.pointDeVie += degat
         println("${caster.nom} a utilisé un « Sort de soins » et a récupéré $degat point(s) de vie !")
     }
-
 }
 
 //instanciation de l'Arme Magique, permet d'invoquer une arme avec une qualité qui est choisie aléatoirement en fonction du tirage dès

@@ -16,15 +16,19 @@ Projet réalisé par : +
 
 [.text-justify]
 ****
-Dans le cadre de notre projet Kotlin Aventure, l’objectif était de nouspermettre d’utiliser nos connaissances avec le langage Kotlin acquis en cours et de les développer tout en respectant le cahier des charges.
+Dans le cadre de notre projet Kotlin Aventure, l’objectif était de nous permettre d’utiliser
+nos connaissances avec le langage Kotlin acquis en cours et de les développer tout en respectant
+le cahier des charges.
 ****
 
 === Introduction :
 
 [.text-justify]
-----
-Après avoir cerné les objectifs de ce projet, nous verrons comment instancier et modifier des classes, des objets et des méthodes. Puis nous expliquerons les difficultés rencontrées et enfin, nous terminerons par une conclusion personnelle.
-----
+****
+Après avoir cerné les objectifs de ce projet, nous verrons comment instancier et modifier des classes,
+des objets et des méthodes. Puis nous expliquerons les difficultés rencontrées et enfin,
+nous terminerons par une conclusion personnelle.
+****
 
 IMPORTANT: Lien Github :  https://github.com/atandabany/KotlinAventure
 
@@ -35,8 +39,8 @@ IMPORTANT: Lien Github :  https://github.com/atandabany/KotlinAventure
 ==== 1.1 Création du personnage
 
 [.text-justify]
-Pour saisir les caractéristiques des scores attaque, defense, endurance, et de vitesse de 40 point maximum,
-Nous avons utilisé une do while qui permet de repeter une boucle et de l'exécuter tant qu'elle est vrai.
+Pour saisir les caractéristiques des scores *attaque*, *defense*, *endurance*, et de *vitesse* de 40 points maximum,
+nous avons utilisé la boucle *do while* qui permet de répéter une boucle et de l'exécuter tant qu'elle est vraie.
 
 [source, kotlin]
 ----
@@ -54,10 +58,10 @@ println("Saisir les points de spécialité. 40 point au maximum")
         } while (caracteristique < 40 || caracteristique > 40)
 ----
 
-NOTE: A noter que nous avons décidé que les points ne peuvent etre inférieur ou supérieur à 40.
+NOTE: À noter que nous avons décidé que les points ne peuvent pas être inférieurs ou supérieurs à 40.
 
-Ensuite nous voulions savoir que a chaque point d'endurance ajouter, les points de vie augmentent de 10.
-Pour cela nous avons utilisé l'intruction if qui permet de vérifier une condition.
+Pour chaque point d'endurance ajouté, les points de vie augmentent de 10.
+Pour cela, nous avons utilisé l'instruction *if* qui permet de vérifier une condition.
 
 [source, kotlin]
 ----
@@ -73,7 +77,9 @@ if (ptsEndurance > 1) {
 ==== 1.2 Modification de la méthode tourJoueur()
 
 [.text-justify]
-La méthode *tourJoueur()* permet au joueur de choisir une action lorsque son tour commence. Le joueur peut choisir une action parmi les suivantes : Attaquer, passer son tour, boire une potion, consulter son inventaire, lancer un sort et voler un item.
+La méthode *tourJoueur()* permet au joueur de choisir une action lorsque son tour commence.
+Le joueur peut choisir une action parmi les suivantes : attaquer, passer son tour, boire une potion,
+consulter son inventaire, lancer un sort et voler un item.
 
 [source,kotlin]
 ----
@@ -112,7 +118,9 @@ fun tourDeJoueur() {
 ----
 
 NOTE: Si le joueur décide d'attaquer le monstre, le joueur devra saisir le chiffre indiqué pour lancer l'action.
-Par exemple, pour attaque le joueur devra saisir 0 en appelant la méthode *attaque* de la classe *Personnage*. Les actions boire une potion, consulter son inventaire, lancer un sort et voler un item seront expliqués plus tard dans les prochaines missons.
+Par exemple, pour attaquer, le joueur devra saisir 0 en appelant la méthode *attaque* de la classe *Personnage*.
+Les actions boire une potion, consulter son inventaire, lancer un sort et voler un item seront expliqués
+plus tard dans les prochaines missions.
 
 
 
@@ -145,9 +153,9 @@ Si le nombre est compris entre 71 et 80, le monstre boit sa potion. Sinon, il pa
 ----
 
 NOTE: Le monstre peut boire sa *potion* si le nombre est compris entre *71* et *81*,
-et aussi s'il en a une dans son inventaire. Pour cela, nous utilisons la méthode *avoirPotion()*,
-et également, le monstre doit avoir des points de vie inférieurs à la moitié de ses points de vie
-max pour pouvoir boire la potion
+et s'il en a une dans son inventaire. Pour cela, nous utilisons la méthode *avoirPotion()*.
+Le monstre doit avoir des points de vie inférieurs à la moitié de ses points de vie
+max pour pouvoir boire la potion.
 
 
 
@@ -298,6 +306,7 @@ Pour réaliser un test unitaire il faut réaliser les étapes suivantes :
 ==== 3.2 : Faire un test unitaire pour calculProtection()
 Le test unitaire vérifie si la méthode calculProtection() de la classe Armure retourne
 bien la valeur attendue "1". Si le test est réussi alors la méthode fonctionne.
+
 [source,kotlin]
 ----
 class ArmureTest {
@@ -737,11 +746,88 @@ le sort affecte les personnages.Cela permet de déterminer le comportement préc
 lorsqu'il est utilisé dans le jeu.
 
 
+
 ==== Intermission 7 :
 
+Pour que le joueur puisse choisir la classe qu'il souhaite, on utilise la condition *when* de la manière suivante :
+[source,kotlin]
+----
+when (classe) {
+----
 
-*A COMPLETER*
+[cols="1,1,1"]
+|===
+|Classe Guerrier |Classe Mage |Classe Voleur
 
+|"0" -> { +
+hero = Guerrier( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+hache2, +
+armure) +
+println("Vous êtes un Guerrier !")
+}
+
+
+| "1" -> {
+hero = Mage( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+armure, +
+mutableListOf(
+projectionAcide,
+sortDeSoins,
+invocationArmeMagique,
+invocationArmureMagique,
+sortBouleDeFeu,
+missileMagique) +
+) +
+println("Vous êtes un Mage !")
+}
+
+|"2" -> { +
+hero = Voleur( +
+nomPerso, +
+ptsVieMin, +
+ptsVieFinalMax, +
+totalAttaque, +
+totalDefense, +
+totalEnduPerso, +
+totalVitesse, +
+inventaire, +
+edict, +
+armure) +
+println("Vous êtes un Voleur !")
+}
+
+|On ajoute l'attribut hache2 +
+Affiche le nom de classe Guerrier
+|On ajoute la mutable list pour les sorts +
+Affiche le nom de classe Mage
+|Affiche le nom de la classe Voleur
+|===
+
+====
+*Si le joueur choisit :*
+
+* 0  le personnage sera un Guerrier
+* 1 le personnage sera un  Mage
+* 2 le personnage sera un  Voleur
+====
 
 ==== 8.1 : Méthodes toString() equipe() attaque()
 Nous avons créer la dernière version de la méthode équipé pour définir l'emplacement de l'arme.
@@ -907,7 +993,26 @@ REMARQUE : 'this' désigne le joueur
 
 ==== Intermission 8 :
 
-A COMPLETER
+Si le personnage choisit dans la sélection est un Mage, il pourra avoir la possibilité de lancer un sort avec la méthode
+*choisirEtLancerSort* en saisissant le chiffre 4.
+
+[source,kotlin]
+----
+  "4" -> {
+                val leMage = this.jeu.joueur as Mage
+                leMage.choisirEtLancerSort(monstre)
+            }
+----
+
+Et si c'est un Voleur, il faudra saisir le chiffre 5 et il pourra voler un objet avec la méthode *volerTem().*
+
+[source,kotlin]
+----
+"5" -> {
+                val leVoleur = this.jeu.joueur as Voleur
+                leVoleur.volerItem(monstre)
+            }
+----
 
 ==== 9.1 : Création de sorts : Boule de feu, Missile magique
 
@@ -1034,16 +1139,138 @@ val sortDeSoins = Sort("Sort de soins") { caster, cible ->
 
 }
 ----
+
 ****
 REMARQUE : On vérifie toujours si les points de vie à restaurer dépassent les points de vie maximum.
 Si c'est le cas, on fixe les points de vie au maximum pour éviter les erreurs.
 ****
 
 
+
 ==== Intermission 9 :
 
-==== 10.1 : Faire des tests unitaires les sorts de boule de feu et Missile magique
+On crée deux objets *Sort* : *projectionAcide* et *sortDeSoins*, afin de les ajouter dans l'item *grimoire*.
 
-==== 10.2 : Faire des tests unitaires les sorts d’invocations
+****
+*Sort projection d'acide*
+****
+[source,kotlin]
+----
+val projectionAcide = Sort("Sort de Projection acide") { mage, cible ->
+run {
+val tirageDes = TirageDes(1, 10)
+var degat = tirageDes.lance()
+degat = maxOf(1, degat - cible.calculeDefense())
+cible.pointDeVie -= degat
+println("Le jet d'acide inflige $degat a ${cible.nom}")
+}
+}
+----
 
-==== 10.3 : Faire des tests unitaires pour le sort de soins
+****
+*Sort de soins*
+****
+
+[source,kotlin]
+----
+val sortDeSoins = Sort("Sort de soins") { caster, cible ->
+run {
+val tirageDes = TirageDes(1, 6)
+var degat = tirageDes.lance() + (caster.attaque / 2)
+
+        val pv = caster.pointDeVieMax - caster.pointDeVie
+
+        if (degat > pv) {
+
+            degat = pv
+        }
+        caster.pointDeVie += degat
+        println("${caster.nom} a utilisé un « Sort de soins » et a récupéré $degat point(s) de vie !")
+    }
+}
+----
+
+Puis, on regroupe tous les sorts dans une *mutableListOf* de l'objet Mage.
+
+[source,kotlin]
+----
+ "1" -> {
+                hero = Mage(
+                    nomPerso,
+                    ptsVieMin,
+                    ptsVieFinalMax,
+                    totalAttaque,
+                    totalDefense,
+                    totalEnduPerso,
+                    totalVitesse,
+                    inventaire,
+                    edict,
+                    armure,
+                    mutableListOf(
+                        projectionAcide,
+                        sortDeSoins,
+                        invocationArmeMagique,
+                        invocationArmureMagique,
+                        sortBouleDeFeu,
+                        missileMagique
+                    )
+                )
+                println("Vous êtes un Mage !")
+            }
+----
+
+==== 10 : Faire des tests unitaires des sorts
+
+On genere un test unitaire. +
+On crée deux objets : Mage et Monstre. On utilise les sorts créés dans le *main* afin de les tester.
+Dans le parametre de la méthode *effect* est récupéré les deux objets crées. Les sorts inflige des dégats ou une
+récupération de points de vie.
+
+[source,kotlin]
+----
+class SortTest {
+    val monstre = Personnage("black", 71, 71, 10, 20, 20, 10, mutableListOf(), null, null)
+    val mage = Mage("Deva", 4, 10, 10, 10, 8, 10, mutableListOf(), null, null)
+
+    @Test
+    fun sortBouleDeFeuTest() {
+        sortBouleDeFeu.effect(mage, monstre)
+    }
+
+    @Test
+    fun missileMagiqueTest() {
+        missileMagique.effect(mage, monstre)
+    }
+
+    @Test
+    fun invocationArmeMagiqueTest() {
+        invocationArmeMagique.effect(mage, monstre)
+    }
+
+    @Test
+    fun sortDeSoinsTest() {
+        sortDeSoins.effect(mage, monstre)
+    }
+}
+----
+
+
+== Difficultés rencontrées
+
+* *Steeven* : +
+====
+
+====
+
+* *Adrien* : +
+====
+
+====
+
+* *Devamadushan* : +
+====
+Le projet n'etait pas evidemnt à comprendre cependant j'ai su faire preuvre de determination et
+j'ai su mettre en oeuvre mes competences pour parvenir a resoudre des problemes et aider mon groupe.
+====
+
+== Conclusion
