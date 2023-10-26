@@ -86,6 +86,9 @@ val sortBouleDeFeu = Sort("Boule de feu") { caster, cible ->
         degat += degatCaster
         degat -= cible.calculeDefense()
         cible.pointDeVie -= degat
+        if (degat <= 1) {
+            degat = 1
+        }
         println("${caster.nom} lance une « Boule de feu » et inflige $degat de dégat(s) à ${cible.nom}.")
     }
 }

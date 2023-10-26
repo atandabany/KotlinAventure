@@ -12,7 +12,7 @@ Projet réalisé par : +
 
 *Du 20/09/2023 au 12/10/2023*
 
-== *Contexte:*
+=== Contexte:
 
 [.text-justify]
 ****
@@ -27,10 +27,14 @@ le cahier des charges.
 ****
 Après avoir cerné les objectifs de ce projet, nous verrons comment instancier et modifier des classes,
 des objets et des méthodes. Puis nous expliquerons les difficultés rencontrées et enfin,
-nous terminerons par une conclusion personnelle.
+nous terminerons par une conclusion.
 ****
 
 IMPORTANT: Lien Github :  https://github.com/atandabany/KotlinAventure
+
+NOTE: Steeven a accompli toutes les missions qui avaient pour terminaison les numéros comme 1.1, 2.1, 3.1, etc... +
+Adrien toutes les missions 1.2, 2.2, 3.2, etc... +
+Et Devamadushan les missions 1.3, 2.3, 3.3, etc...
 
 <<<<
 
@@ -58,8 +62,9 @@ println("Saisir les points de spécialité. 40 point au maximum")
         } while (caracteristique < 40 || caracteristique > 40)
 ----
 
-NOTE: À noter que nous avons décidé que les points ne peuvent pas être inférieurs ou supérieurs à 40.
+NOTE: Nous avons décidé que les points ne peuvent pas être inférieurs ou supérieurs à 40.
 
+[.text-justify]
 Pour chaque point d'endurance ajouté, les points de vie augmentent de 10.
 Pour cela, nous avons utilisé l'instruction *if* qui permet de vérifier une condition.
 
@@ -78,8 +83,8 @@ if (ptsEndurance > 1) {
 
 [.text-justify]
 La méthode *tourJoueur()* permet au joueur de choisir une action lorsque son tour commence.
-Le joueur peut choisir une action parmi les suivantes : attaquer, passer son tour, boire une potion,
-consulter son inventaire, lancer un sort et voler un item.
+Le joueur peut choisir une action parmi les suivantes : "attaquer", "passer son tour", "boire une potion",
+"consulter son inventaire", "lancer un sort" et "voler un item".
 
 [source,kotlin]
 ----
@@ -128,7 +133,7 @@ plus tard dans les prochaines missions.
 
 [.text-justify]
 La méthode choisit aléatoirement une action pour le monstre lors de son tour.
-Nous utilisons la méthode 'random()' pour choisir un nombre entre 1 et 100.
+Nous utilisons la méthode *random()* pour choisir un nombre entre 1 et 100.
 Si le nombre est inférieur ou égal à 70, le monstre attaque.
 Si le nombre est compris entre 71 et 80, le monstre boit sa potion. Sinon, il passe son tour.
 
@@ -162,10 +167,10 @@ max pour pouvoir boire la potion.
 ==== 2.1 Classe Arme & TypeArme
 
 [.text-justify]
-Dans cette mission, nous avons créer les classes Arme et TypeArme et créer la méthode calculerDegats()
-pour connaitre les dégats du personnage en fonction de l'arme équipé. +
-La méthode consiste à calculer les dégats en fonction, du nombre de tirageDes et d'effectuer un coup critique
-si le résultat obtenu lors du tirageDes est supérieur a l'activation critique.
+Dans cette mission, nous avons créé les classes *Arme*, *TypeArme* et la méthode *calculerDegats()*
+pour connaître les dégâts du personnage en fonction de l'arme équipé. +
+La méthode consiste à calculer les dégâts en fonction du nombre de tirageDes, et d'effectuer un coup critique
+si le résultat obtenu lors du *tirageDes* est supérieur a l'activation critique.
 
 [source, kotlin]
 ----
@@ -180,7 +185,7 @@ fun calculerDegats(): Int {
     }
 ----
 
-NOTE: A savoir que le resultat obtenu peut être différent en fonction de l'arme choisi,
+NOTE: À savoir que le résultat obtenu peut être différent en fonction de l'arme choisie,
 car les armes n'ont pas les mêmes bonus de rareté.
 
 
@@ -188,9 +193,9 @@ car les armes n'ont pas les mêmes bonus de rareté.
 ==== 2.2 Classe Armure & TypeArmure
 
 [.text-justify]
-Nous réalisons les classes et TypeArmure Armure. +
-La classe TypeArmure est représentée de la manière suivante ci-dessous.
-La classe a comme attributs nom de type String et bonusType de type Int.
+Nous réalisons les classes et *TypeArmure* et *Armure*. +
+La classe *TypeArmure* est représentée de la manière suivante ci-dessous.
+La classe a comme attributs *nom* de type *String* et *bonusType* de type *Int*.
 
 [source,kotlin]
 ----
@@ -201,9 +206,9 @@ class TypeArmure(
 ----
 
 [.text-justify]
-La classe Armure ci-dessous hérite de la classe mère Item.
-La classe Armure a comme propriétés nom et description de type String,
-qualité représente la classe Qualité et typeArmure représente la classe TypeArmure.
+La classe *Armure* ci-dessous hérite de la classe mère *Item*.
+La classe *Armure* a comme propriétés *nom* et *description* de type *String*,
+*qualite* représente la classe *Qualite* et *typeArmure* représente la classe *TypeArmure*.
 
 [source,kotlin]
 ----
@@ -216,15 +221,11 @@ val typeArmure: TypeArmure
 ----
 
 [.text-justify]
-La méthode calculProtection calcule la protection en additionnant la propriété bonusType
-de l'objet typeArmure et bonusRarete de l'objet qualite.
+La méthode *calculProtection* calcule la protection en additionnant la propriété *bonusType*
+de l'objet *typeArmure* et *bonusRarete* de l'objet *qualite*.
 
 [source,kotlin]
 ----
-    /**@author Adrien
-     * @return type + rareté
-     * Méthode "calculProtection" pour calculer la protection de l'armure
-     */
     fun calculProtection(): Int {
         var additionProtection = this.typeArmure.bonusType + this.qualite.bonusRarete
         return additionProtection
@@ -236,9 +237,9 @@ de l'objet typeArmure et bonusRarete de l'objet qualite.
 ==== 2.3 Classe Potion & Bombe
 
 [.text-justify]
-Nous avons créé les classes **Bombe** et **Potion** et une méthode *utiliser* pour permettre
+Nous avons créé les classes **Bombe** et **Potion** et une méthode *utiliser()* pour permettre
 aux personnages de provoquer des dégâts en utilisant des *bombes* et de
-restaurer des points de vie en consommant des **potions** dans le jeu."
+restaurer des points de vie en consommant des **potions** dans le jeu.
 
 [source,Kotlin]
 ----
@@ -260,13 +261,14 @@ class Potion(
 ) : Item(nom, description) {
 }
 ----
-****
-Remarque : le nom et la description sont des paramètres hérités par la classe mère
-*Item* afin d'éviter les répétitions."
-****
 
+NOTE: Le *nom* et la *description* sont des paramètres hérités par la classe mère
+*Item* afin d'éviter les répétitions.
+
+[.text-justify]
 La méthode *utiliser* de la classe *Bombe* récupère la cible en paramètre et inflige des dégâts à cette cible
 en simulant les dégâts par la somme des dés et des faces.
+
 [source,Kotlin]
 ----
 override fun utiliser(cible: Personnage) {
@@ -284,28 +286,52 @@ override fun utiliser(cible: Personnage) {
 ----
 
 NOTE: On crée un objet *TirageDes()*, puis on utilise la méthode *lance* de la classe pour
-effectuer la somme des dés et des faces, ce qui nous permet de calculer les dégâts infligés à la cible.
+effectuer la somme des dés et des faces, ce qui nous permet de calculer les dégâts infligés à la cible. +
+Si le résultat final est inférieur à 1, nous le réglons à 1 pour garantir qu'il y ait au moins 1 point de dégâts
+ou plus à infliger à la cible.
 
-****
-REMARQUE : Si le résultat final est inférieur à 1, nous le réglons à 1 pour
-garantir qu'il y ait au moins 1 point de dégâts ou plus à infliger à la cible.
-****
 
 
 ==== 3.0 : Comment faire un test unitaire
-Les tests unitaires permettent de vérifier que le code d'une fonction fonctionne correctement.
-Pour réaliser un test unitaire il faut réaliser les étapes suivantes :
+
+[.text-justify]
+Les tests unitaires permettent de vérifier que le code d'une fonction fonctionne correctement. +
+Pour réaliser un test unitaire, il faut réaliser les étapes suivantes :
 
 * Faire un clic droit sur la méthode choisie
-* Puis cliquer sur "Generate"
+* Puis, cliquer sur "Generate"
 * Et enfin, sur "Test..."
+
+
 
 ==== 3.1 : Faire un test unitaire pour calculerDegats()
 
+[.text-justify]
+Voici le test unitaire de la méthode *calculerDegats*, nous avons utilisé *Assertion.assertTrue* qui permet
+de vérifier si le résultat est vrai ou faux, si c'est vrai rien n'est affiché et si c'est faux,
+des erreurs sont retournées afin de spécifier que la méthode à un problème.
+
+[source,kotlin]
+----
+ @Test
+    fun calculerDegat() {
+        val uneHache = Arme("hache +1", "", typeHache, qualiteRare)
+        var result = uneHache.calculerDegats()
+        Assertions.assertTrue(result >= 2)
+        Assertions.assertTrue(result <= 17)
+}
+----
+
+NOTE: Il est obligatoire de mettre *@test* avant d'écrire le code du test unitaire, sinon cela ne fonctionnera pas.
+
+
+
 
 ==== 3.2 : Faire un test unitaire pour calculProtection()
-Le test unitaire vérifie si la méthode calculProtection() de la classe Armure retourne
-bien la valeur attendue "1". Si le test est réussi alors la méthode fonctionne.
+
+[.text-justify]
+Le test unitaire vérifie si la méthode *calculProtection()* de la classe *Armure* retourne
+bien la valeur attendue "1". Si le test est une réussite alors la méthode fonctionne.
 
 [source,kotlin]
 ----
@@ -319,19 +345,22 @@ class ArmureTest {
     }
 }
 ----
+
 NOTE: Pour vérifier le résultat attendu, nous utilisons la méthode "assertEquals". La première
 propriété récupère la valeur attendue, et la deuxième propriété attend le résultat
-de la méthode *calculProtection()* de l'objet armure que nous venons de créer.
+de la méthode *calculProtection()* de l'objet *armure* que nous venons de créer.
+
 
 
 ==== 3.3 : Faire un test unitaire pour la méthode utiliser() de la classe Bombe
 
-Dans la classe BombeTest, nous effectuons un test de la méthode utiliser() de la classe Bombe,
+[.text-justify]
+Dans la classe *BombeTest*, nous effectuons un test de la méthode *utiliser()* de la classe *Bombe*,
 ce qui nous permet de vérifier si la méthode renvoie la valeur attendue. +
-Pour effectuer ce test unitaire, nous créons une instance de la classe Personnage et
-un objet de la classe Bombe. Ensuite, nous appliquons la méthode utiliser sur le personnage. +
+Pour effectuer ce test unitaire, nous créons une instance de la classe *Personnage* et
+un objet de la classe *Bombe*. Ensuite, nous appliquons la méthode *utiliser()* sur le personnage. +
 Pour effectuer la vérification, nous comparons les points de vie du personnage en soustrayant
-ses points de vie actuels de ses points de vie maximaux, en nous attendant à un résultat supérieur ou égal a 0.
+ses points de vie actuels de ses points de vie maximaux. Nous devons nous attendre à un résultat supérieur ou égal a 0.
 
 [source,Kotlin]
 ----
@@ -356,44 +385,39 @@ class BombeTest {
 }
 ----
 
-NOTE: Nous vérifions la méthode à l'aide de la méthode assertTrue, qui prend deux valeurs
-en entrée pour les comparer et renvoie un booléen (type Boolean)
+NOTE: Nous vérifions la méthode à l'aide de la méthode *assertTrue*, qui prend deux valeurs
+en entrée pour les comparer et renvoie un booléen (type Boolean).
 
 
 
 ==== Intermission (Creation de la classe Item)
 
-L"intermission 3 etait de cree une classe *Item*, pour faire hériter les propriétes 'nom ,
-description' afin de eviter les repétitions
+[.text-justify]
+L'intermission 3 consiste à créer une classe *Item*, pour faire hériter les propriétés *nom*,
+*description* afin d'éviter les répétitions.
+
 [source,kotlin]
 ----
 abstract class Item(val nom: String, val description: String) {
 
-    /**
-     * @author Adrien
-     * @param Personnage
-     * Méthode pour faire hériter la méthode 'utiliser' de la classe mère aux classes filles.
-     */
     open fun utiliser(cible: Personnage) {
         println("$nom ne peut pas etre utilisé")
     }
-    /**
-     * @author
-     * @param
-     * @return
-     * Méthode pour ...
-     */
+
     override fun toString(): String {
         return "${nom} (nom='$nom' , description ='$description')"
     }
 }
 ----
 
-NOTE:  *abstract* permet d'eviter la création d'objets de la classe *Item*
+NOTE: La classe *abstract* permet d'éviter la création d'objets de la classe *Item*.
+
+
 
 ==== 4 : Faire hériter les classes Arme, Armure, Potion et Bombe de la classe Item
 
-Les classes suivantes héritent des propriétés nom et description de la classe Item.
+[.text-justify]
+Les classes suivantes héritent des propriétés *nom* et *description* de la classe *Item*.
 
 [source,kotlin]
 ----
@@ -434,14 +458,16 @@ class Bombe(
 ) : Item(nom, description) {
 ----
 
-IMPORTANT: Les propriétés nom et description des classes filles sont en parametre. Les classes
-filles héritent de la classe mère Item.
+IMPORTANT: Les propriétés *nom* et *description* des classes filles sont en paramètre. Les classes
+filles héritent de la classe mère *Item*.
 
 
-==== 5.1 : méthodes attaque() et equipe()
 
-La méthode attaque() consiste dans un premier temps à verifier qui si le personnage à une arme équipée.
-Si c'est le cas les dégats seront augmenté en fonction de l'arme. Ensuite de déduire les dégats en fonction
+==== 5.1 : Les méthodes attaque() et equipe()
+
+[.text-justify]
+La méthode *attaque()* consiste dans un premier temps à vérifier le personnage à une arme équipée.
+Si c'est le cas, les dégâts seront augmentés en fonction de l'arme. Ensuite elle déduit les dégâts en fonction
 de la défense adverse et de ses points de vie.
 
 [source, kotlin]
@@ -460,11 +486,12 @@ open fun attaque(adversaire: Personnage) {
     }
 ----
 
-NOTE: 1. Les dégats de base sont toujours divisé par 2 car sinon les dégats du personnage serait trop fort. +
-2. Les dégats infligés en fonction de la défense adverse sont toujours égale à 1, pour éviter d'etre en négatif.
+NOTE: 1. Les dégâts de base sont toujours divisés par 2. +
+2. Les dégâts infligés en fonction de la défense adverse sont toujours égaux à 1, pour éviter d'être en négatif.
 
-Il existe plusieurs versions de la méthode équipé, la première méthode équipé consiste à parcourir
-l'inventaire et d'équipé une arme en arme principale si c'est vrai.
+[.text-justify]
+Il existe plusieurs versions de la méthode *equipe()*, la première consiste à parcourir
+l'inventaire et d'équiper une arme en arme principale.
 
 [source, kotlin]
 ----
@@ -477,9 +504,11 @@ open fun equipe(uneArme: Arme) {
 ----
 
 
-==== 5.2 : méthodes calculTotalDefense() et equipe()
 
-La méthode equipe() permet de vérifier si une armure est présente dans l'inventaire et si c'est le cas elle
+==== 5.2 : Les méthodes calculTotalDefense() et equipe()
+
+[.text-justify]
+La méthode *equipe()* permet de vérifier si une armure est présente dans l'inventaire et si c'est le cas elle
 équipe cette armure et affiche le nom de l'armure équipée.
 
 [source,kotlin]
@@ -492,8 +521,9 @@ La méthode equipe() permet de vérifier si une armure est présente dans l'inve
     }
 ----
 
-La méthode calculeDefense calcule la défense d'un personnage en prenant la moitié de sa valeur de base.
-Si le personnage a une armure, on ajoute le bonus de l'armure à la défense et retourne le résultat de cette addition.
+[.text-justify]
+La méthode *calculeDefense* calcule la défense d'un personnage en prenant la moitié de sa valeur de base.
+Si le personnage a une armure, on ajoute le bonus de l'armure à la défense et on retourne le résultat de cette addition.
 
 [source,kotlin]
 ----
@@ -507,10 +537,13 @@ Si le personnage a une armure, on ajoute le bonus de l'armure à la défense et 
 ----
 
 
-==== 5.3 : méthodes avoirPotion(), avoirBombe(), boirePotion()
 
-Les méthodes *avoirPotion()* et *avoirBombe()* retournent *Vrai*
-seulement si la personne possède au moins un de ces items dans son inventaire.
+==== 5.3 : Les méthodes avoirPotion(), avoirBombe(), boirePotion()
+
+[.text-justify]
+Les méthodes *avoirPotion()* et *avoirBombe()* retournent *True* seulement si la personne possède au moins
+un de ces items dans son inventaire.
+
 [source,Kotlin]
 ----
  fun avoirPotion(): Boolean {
@@ -540,6 +573,7 @@ fun avoirBombe(): Boolean {
 
 ----
 
+[.text-justify]
 La méthode *boirePotion()* permet à un personnage de boire une potion pour
 restaurer ses points de vie. Elle accepte une potion en argument ou recherche une dans
 l'inventaire du personnage. Une fois la potion trouvée, elle la retire de l'inventaire du
@@ -575,50 +609,67 @@ personnage et restaure ses points de vie.
         println("$nomSoins a augmenté de $soins PV")
     }
 ----
-****
-REMARQUE : Si le montant de soins que la personne va recevoir est supérieur à ses points
-de vie maximum, alors le montant de soins sera réglé sur les points de vie maximum du personnage.
-****
+
+NOTE: Si le gain de soins attribué au personnage est supérieur à ses points
+de vie maximum, alors le gain sera limité aux points de vie maximum du personnage.
 
 
 
 ==== 6.1 : méthodes afficheInventaire() et loot()
-Nous avons créer une méthode afficheInventaire qui permet d'afficher chaque item avec son index.
-Pour cela nous avons utilisé la boucle for pour parcourir l'inventaire et afficher l'index de chaque item.
-Et la condition do while pour choisir un item en fonction de la liste en index de l'inventaire.
+
+[.text-justify]
+Nous avons créé une méthode *afficheInventaire* qui permet d'afficher chaque item avec son index.
+Pour cela, nous avons utilisé la boucle *for* pour parcourir l'inventaire et afficher l'index de chaque item et la
+condition *do while* pour choisir un item en fonction de la liste en index de l'inventaire.
 
 [source, kotlin]
 ----
 fun afficheInventaire(): Int {
         println("Inventaire $nom")
         val size = inventaire.size
+
         for (i in 0..size - 1) {
             val item = inventaire[i]
             println("$i => ${item.nom}")
+
         }
+
         println("choisir un item : ")
         var option: Int
+
         do {
             option = readln().toInt()
-        } while (option <= inventaire.size - 1 && option >= 0)
+
+        } while (option > inventaire.size - 1 && option < 0)
         return option
     }
 ----
 
+
+
 ==== 6.2 : modification de la méthode tourJoueur()
 
-Nous modifions la méthode tourJoueur() en saisisant la code suivant : `"2" -> this.jeu.joueur.boirePotion()`.
-La ligne de code exécute la méthode boirePotion() sur le joueur associé à un objet jeu.
+[.text-justify]
+Nous modifions la méthode *tourJoueur()* en saisissant le code suivant : `"2" -> this.jeu.joueur.boirePotion()`.
+La ligne de code exécute la méthode *boirePotion()* sur le joueur associé à un objet jeu.
+
 
 
 ==== 6.3 : modification de la méthode tourMonstre()
 
+[.text-justify]
+*(cf. étape 1.3)*
+
+
+
 ==== Intermission 6 : Ajout de la méthode tourJoueur() dans la classe Combat
 
-Le code ci dessous affiche l'inventaire du joueur, et choisit sa position en fonction de sa clé.
-Si l'objet est une bombe, l'objet choisit est une bombe, la méthode utiliser()
+[.text-justify]
+Le code ci-dessous affiche l'inventaire du joueur, et choisit sa position en fonction de sa clé.
+Si l'objet est une bombe, l'objet choisit est une bombe, la méthode *utiliser()*
 (méthode définie uniquement pour la bombe) permettra d'attaquer le monstre.
-Si l''objet est une potion, alors, l'objet sera utliser sur le joueur pour regagner des points de vie.
+Si l'objet est une potion, alors, l'objet sera utilisé sur le joueur pour regagner des points de vie.
+
 [source,kotlin]
 ----
 "3" -> {
@@ -632,11 +683,14 @@ Si l''objet est une potion, alors, l'objet sera utliser sur le joueur pour regag
                 }
 ----
 
-== Sprint 2 : Gestion du choix de la classe (Guerrier, Voleur, Mage)
+<<<
+
+=== Sprint 2 : Gestion du choix de la classe (Guerrier, Voleur, Mage)
 
 ==== 7.1 : Création de la classe Guerrier
 
-Nous avons créer la classe Guerrier avec les attributs issu du diagrammes relié à l'héritage Personnages.
+[.text-justify]
+Nous avons créé la classe *Guerrier* avec les attributs issu du diagramme relié à l'héritage *Personnages*.
 
 [source, kotlin]
 ----
@@ -666,11 +720,13 @@ class Guerrier(
 )
 ----
 
-NOTE: La classe Guerrier possède une arme secondaire en plus de l'arme principale.
+NOTE: La classe *Guerrier* possède une arme secondaire en plus de l'arme principale.
 
 
-==== Mission 7.2 : Création de la classe Voleur
 
+==== 7.2 : Création de la classe Voleur
+
+[.text-justify]
 Nous réalisons la classe Voleur. La classe Voleur est une classe fille qui hérite des propriétés
 de la classe Personnage. Nous pouvons affirmer l'héritage avec la notation suivante : `: Personnage(...)`
 
@@ -701,9 +757,12 @@ armure
 ) {
 ----
 
-==== Mission 7.3 : Création de la classe Mage et Sort
 
-La classe *Mage* est une sous-classe de *Personnage* qui hérite de toutes les propriétés de
+
+==== 7.3 : Création de la classe Mage et Sort
+
+[.text-justify]
+La classe *Mage* est une sous-classe de la classe *Personnage* qui hérite de toutes les propriétés de
 *Personnage*, à l'exception de la propriété *grimoire* qui contiendra une liste de sorts
 spécifiques au mage.
 
@@ -729,8 +788,10 @@ class Mage(
 
 }
 ----
-La classe "Sort" représente un sort magique avec un nom et un effet défini
-sous forme d'une lambda prenant deux personnages en tant qu'arguments.
+
+[.text-justify]
+La classe *Sort* représente un sort magique avec un nom et un effet défini
+sous la forme d'une fonction lambda prenant deux personnages en arguments.
 
 [source,Kotlin]
 ----
@@ -741,19 +802,16 @@ class Sort(
 }
 ----
 
-NOTE: La propriété "effect" dans la classe "Sort" est une fonction anonyme qui définit comment
-le sort affecte les personnages.Cela permet de déterminer le comportement précis du sort
+NOTE: La propriété *effect* dans la classe *Sort* est une fonction anonyme qui définit comment
+le sort affecte les personnages. Cela permet de déterminer le comportement précis du sort
 lorsqu'il est utilisé dans le jeu.
 
 
 
-==== Intermission 7 :
+==== Intermission 7 : Modification du code lors du choix du personnage
 
-Pour que le joueur puisse choisir la classe qu'il souhaite, on utilise la condition *when* de la manière suivante :
-[source,kotlin]
-----
-when (classe) {
-----
+[.text-justify]
+Pour que le joueur puisse choisir la classe qu'il souhaite, on utilise la condition *when*.
 
 [cols="1,1,1"]
 |===
@@ -814,25 +872,29 @@ armure) +
 println("Vous êtes un Voleur !")
 }
 
-|On ajoute l'attribut hache2 +
-Affiche le nom de classe Guerrier
-|On ajoute la mutable list pour les sorts +
-Affiche le nom de classe Mage
-|Affiche le nom de la classe Voleur
+|On ajoute l'attribut *hache2* +
+Affiche le nom de classe *Guerrier*
+|On ajoute la *mutable list* pour les sorts +
+Affiche le nom de classe *Mage*
+|Affiche le nom de la classe *Voleur*
 |===
 
 ====
 *Si le joueur choisit :*
 
-* 0  le personnage sera un Guerrier
-* 1 le personnage sera un  Mage
-* 2 le personnage sera un  Voleur
+* 0  le personnage sera un *Guerrier*
+* 1 le personnage sera un  *Mage*
+* 2 le personnage sera un  *Voleur*
 ====
 
+
+
 ==== 8.1 : Méthodes toString() equipe() attaque()
-Nous avons créer la dernière version de la méthode équipé pour définir l'emplacement de l'arme.
-Pour cela, nous allons utilisé when une instruction qui permet d'exécuter un programme lorsqu'une condition est remplie.
-Et l'instruction if pour parcourir l'inventaire et trouver une arme.
+
+[.text-justify]
+Nous avons modifié la méthode *equipe()* pour définir l'emplacement de l'arme.
+Pour cela, nous allons utiliser l'instruction *when*  qui permet d'exécuter un programme lorsqu'une condition est remplie.
+Et l'instruction *if* pour parcourir l'inventaire et trouver une arme.
 
 [source, kotlin]
 ----
@@ -854,13 +916,14 @@ override fun equipe(uneArme: Arme) {
     }
 ----
 
-NOTE: Si le joueur décide d'équipé l'arme en arme principale c'est à dire 0, la méthode équipe de l'arme principale
-est réutiliser.
+NOTE: Si le joueur décide d'équiper une arme en arme principale, c'est-à-dire 0, la méthode *equipe()* de l'arme principale
+est réutilisée.
 
-Nous avons redéfinir la méthode attaque dans le cas ou le joueur choisit la classe Guerrier
+[.text-justify]
+Nous avons redéfini la méthode *attaque* dans le cas où le joueur choisit la classe *Guerrier*
 et donc possède une arme secondaire.
-Si le personnage possède une arme secondaire, calcule les degats du personnage en fonction de l'arme secondaire
-(même fonctionnement que la méthode attaque pour l'arme principale).
+Si le personnage possède une arme secondaire, la méthode calcule les dégâts du personnage en fonction de l'arme secondaire
+(même fonctionnement que la méthode *attaque* pour l'arme principale).
 
 [source, kotlin]
 ----
@@ -879,19 +942,22 @@ override fun attaque(adversaire: Personnage) {
 }
 ----
 
-NOTE: Identique à la méthode attaque de l'arme principale. +
-1. Les degats sont toujours divisé par 2. +
-2. Les degats sont toujours égale à 1 en fonction de la défense adverse.
+NOTE: Identique à la méthode *attaque* de l'arme principale. +
+1. Les dégâts sont toujours divisés par 2. +
+2. Les dégâts sont toujours égaux à 1 en fonction de la défense adverse.
+
+
 
 ==== 8.2 : Méthode toString() et voler()
 
+[.text-justify]
 La méthode volerItem() permet de voler un objet dans l'inventaire d'un personnage.
 
 [source,kotlin]
 ----
  fun volerItem(cible: Personnage) {
         if (cible.inventaire.isNotEmpty()) {
-            var positionObjet = (1..cible.inventaire.size).random()
+            var positionObjet = (0..cible.inventaire.size-1).random()
             var objet = cible.inventaire[positionObjet]
 
             if (objet == cible.armePrincipale) {
@@ -915,31 +981,42 @@ La méthode volerItem() permet de voler un objet dans l'inventaire d'un personna
             println("L'objet ${objet.nom} a été volé et a été ajouté dans l'inventaire")
         } else
             println("L'inventaire de la cible est vide")
+    }
 ----
 
-NOTE: La méthode pourrait être améliorée et proposée de la manière suivant ci-dessous, or
-par soucis de compréhension et de logique et des difficultés rencontrées
-j'ai préfére m'en tenir à cette rédaction proposé ci dessus.
+NOTE: La méthode pourrait être optimisée et présentée de la manière suivante ci-dessous.
+Cependant, par souci de clarté, de compréhension, et en raison des difficultés rencontrées,
+j'ai préféré m'en tenir à la rédaction précédemment proposée.
 
+[source,kotlin]
 ----
-this.inventaire.add(objet)
-cible.inventaire.remove(objet)
+fun volerItem(cible: Personnage) {
+        if (cible.inventaire.isNotEmpty()) {
+            var positionObjet = (0..cible.inventaire.size-1).random()
+            var objet = cible.inventaire[positionObjet]
+                this.inventaire.add(objet)
+                cible.inventaire.remove(objet)
 
-        if (objet==cible.armePrincipale ) {
-            cible.armePrincipale = null
-        }
-        if (objet==cible.armure) {
-            cible.armure=null
-        }
-        this.inventaire.add(cible.inventaire[positionObjet])
-        }
+               if (objet==cible.armePrincipale) {
+                   cible.armePrincipale = null
+                }
+                if (objet==cible.armure) {
+                    cible.armure=null
+                }
+                println("L'objet ${objet.nom} a été volé et a été ajouté dans l'inventaire")
+                }
+                else {
+                println("L'inventaire de la cible est vide")
+                }
 ----
+
+
 
 ==== 8.3 : Méthode toString(), afficherGrimoire() et choisirEtLancerSort()
 
-
-La méthode 'afficheGrimoire' nous permet d'afficher les sorts et leur
-index appartenant au mage qui sont stockés dans la liste du grimoire.ore
+[.text-justify]
+La méthode *afficheGrimoire* nous permet d'afficher les sorts et leur
+index appartenant au mage qui sont stockés dans la liste du grimoire.
 
 [source,Kotlin]
 ----
@@ -951,10 +1028,11 @@ index appartenant au mage qui sont stockés dans la liste du grimoire.ore
     }
 ----
 
-La méthode 'choisirEtLancerSort', qui prend en paramètre l'adversaire,
-permet au joueur d'un personnage (Mage) de choisir un sort depuis le grimoire du personnage.
-Pour ce faire, elle utilise la méthode précédente 'afficheGrimoire'
-pour afficher la liste des sorts. Ensuite, elle demande aux joueurs de choisir un sort et la cible
+[.text-justify]
+La méthode *choisirEtLancerSort*, qui prend en paramètre l'adversaire,
+permet au joueur de classe *Mage* de choisir un sort depuis le grimoire du personnage.
+Pour ce faire, la méthode précédente *afficheGrimoire* permet d'afficher la liste des sorts.
+Ensuite, la méthode demande aux joueurs de choisir un sort et la cible
 sur laquelle le sort sera utilisé.
 
 [source,Kotlin]
@@ -985,16 +1063,16 @@ sur laquelle le sort sera utilisé.
 
     }
 ----
-****
-REMARQUE : 'this' désigne le joueur
-****
+
+NOTE: 'this' désigne le joueur.
 
 
 
-==== Intermission 8 :
+==== Intermission 8 : Modification de la méthode tourJoueur()
 
-Si le personnage choisit dans la sélection est un Mage, il pourra avoir la possibilité de lancer un sort avec la méthode
-*choisirEtLancerSort* en saisissant le chiffre 4.
+[.text-justify]
+Si le personnage choisit dans la sélection est un *Mage*, il pourra avoir la possibilité de lancer un sort
+avec la méthode *choisirEtLancerSort* en saisissant le chiffre 4.
 
 [source,kotlin]
 ----
@@ -1004,7 +1082,8 @@ Si le personnage choisit dans la sélection est un Mage, il pourra avoir la poss
             }
 ----
 
-Et si c'est un Voleur, il faudra saisir le chiffre 5 et il pourra voler un objet avec la méthode *volerTem().*
+[.text-justify]
+Et si c'est un *Voleur*, il faudra saisir le chiffre 5 et il pourra voler un objet avec la méthode *volerTem().*
 
 [source,kotlin]
 ----
@@ -1016,9 +1095,10 @@ Et si c'est un Voleur, il faudra saisir le chiffre 5 et il pourra voler un objet
 
 ==== 9.1 : Création de sorts : Boule de feu, Missile magique
 
-Le sort boule de feu consiste à un lancement de des.
-Et en fonction du lancement de des, calcule le dégats du sort en fonction des degats du personnage,
-de la défense total adverse et déduire de ses points de vie.
+[.text-justify]
+Le sort Boule de Feu s"appuie sur la méthode *tirageDes*. +
+Selon le résultat obtenu, la méthode détermine les dégâts du sort en se basant sur les dégâts du personnage,
+la défense totale de l'adversaire, et ensuite soustrait ces dégâts des points de vie de l'adversaire.
 
 [source, kotlin]
 ----
@@ -1030,16 +1110,21 @@ val sortBouleDeFeu = Sort("Boule de feu") { caster, cible ->
         degat += degatCaster
         degat -= cible.calculeDefense()
         cible.pointDeVie -= degat
+        if (degat <= 1) {
+            degat = 1
+        }
         println("${caster.nom} lance une « Boule de feu » et inflige $degat de dégat(s) à ${cible.nom}.")
     }
 }
 ----
-NOTE: L'attaque est toujours divisé par 3 afin de ne pas rendre le sort trop fort.
 
-Le sort missile magique à le même fonctionnement que le sort boule de feu,
-mais avec l'ajout d'un compteur qui indique que
-si les dégats du caster est supérieur au compteur, calcule les dégats du sort
-en fonction du lancement de dès et des dégats du personnage. Et ajouter +1 au compteur à chaque boucle.
+NOTE: L'attaque est toujours divisée par 3.
+
+[.text-justify]
+Le sort Missile Magique fonctionne de la même manière que le sort "Boule de Feu", mais avec l'ajout d'un compteur.
+Ce compteur détermine si les dégâts infligés par le lanceur sont supérieurs à sa valeur.
+Si c'est le cas, les dégâts du sort sont calculés en fonction du lancer de dés et des dégâts du personnage,
+et le compteur est augmenté de +1 à chaque itération.
 
 [source, kotlin]
 ----
@@ -1061,12 +1146,16 @@ val missileMagique = Sort("Missile magique") { caster, cible ->
     }
 }
 ----
-NOTE: Identique au sort boule de feu, l'attaque est tout le temps divisé par 2.
+NOTE: Identique au sort boule de feu, l'attaque est divisée par 2.
+
+
 
 ==== 9.2 : Création de sorts : Invocation d’une arme magique, Invocation d’une armure magique
 
-instanciation de l'Arme Magique, permet d'invoquer une arme avec une qualité
-qui est choisie aléatoirement en fonction du tirage dès
+[.text-justify]
+Le sort Invocation Arme Magique génère aléatoirement une rareté pour une arme (commun, rare, épique, légendaire)
+avec la méthode *tirageDes*. Une Arme Magique de type *epeeLongue* est créée.
+Cette arme est ensuite ajoutée à l'inventaire du personnage.
 
 [source,kotlin]
 ----
@@ -1089,8 +1178,9 @@ println("Une « Arme Magique » a été ajoutée à l'inventaire.")
 }
 ----
 
-instanciation l'Armure Magique, permet d'invoquer une armure avec une qualité
-qui est choisie aléatoirement en fonction du tirage dès
+[.text-justify]
+Le sort Invocation Armure Magique génère une armure magique de qualité aléatoire
+et l'ajoute à l'inventaire du personnage qui a lancé le sort.
 
 [source,kotlin]
 ----
@@ -1114,11 +1204,13 @@ println("Une armure magique est ajoutée à l'inventaire")
 ----
 
 
-==== 9.3 : Création de sort : Sort de soins
 
-On crée un objet 'sortDeSoins' de la classe 'Sort' pour restaurer les points de vie du
-joueur (Mage). Cela se fait en calculant les points de vie restaurés grâce à un lancer de
-dé à 6 faces et en ajoutant la moitié de ses points d'attaque.
+==== 9.3 :  Sort de soins
+
+[.text-justify]
+On crée un objet *sortDeSoins* de la classe *Sort* pour restaurer les points de vie du
+joueur *Mage*. Cela se fait en calculant les points de vie restaurés grâce à un lancer de
+dés à 6 faces et en ajoutant la moitié de ses points d'attaque.
 
 [source,Kotlin]
 ----
@@ -1140,15 +1232,16 @@ val sortDeSoins = Sort("Sort de soins") { caster, cible ->
 }
 ----
 
-****
-REMARQUE : On vérifie toujours si les points de vie à restaurer dépassent les points de vie maximum.
+
+NOTE: On vérifie toujours si les points de vie à restaurer dépassent les points de vie maximaux.
 Si c'est le cas, on fixe les points de vie au maximum pour éviter les erreurs.
-****
+
 
 
 
 ==== Intermission 9 :
 
+[.text-justify]
 On crée deux objets *Sort* : *projectionAcide* et *sortDeSoins*, afin de les ajouter dans l'item *grimoire*.
 
 ****
@@ -1190,6 +1283,7 @@ var degat = tirageDes.lance() + (caster.attaque / 2)
 }
 ----
 
+[.text-justify]
 Puis, on regroupe tous les sorts dans une *mutableListOf* de l'objet Mage.
 
 [source,kotlin]
@@ -1221,9 +1315,10 @@ Puis, on regroupe tous les sorts dans une *mutableListOf* de l'objet Mage.
 
 ==== 10 : Faire des tests unitaires des sorts
 
-On genere un test unitaire. +
-On crée deux objets : Mage et Monstre. On utilise les sorts créés dans le *main* afin de les tester.
-Dans le parametre de la méthode *effect* est récupéré les deux objets crées. Les sorts inflige des dégats ou une
+[.text-justify]
+On génère un test unitaire. +
+On crée deux objets : *Mage* et *Monstre*. On utilise les sorts créés dans le *main* afin de les tester.
+Dans le paramètre de la méthode *effect* est récupéré les deux objets crées. Les sorts infligent des dégâts ou une
 récupération de points de vie.
 
 [source,kotlin]
@@ -1255,22 +1350,36 @@ class SortTest {
 ----
 
 
+
 == Difficultés rencontrées
 
 * *Steeven* : +
 ====
-
+_"Pendant le projet, j'ai rencontré des difficultés de compréhension concernant certains énoncés des missions,
+en particulier lorsqu'il s'agissait d'appliquer certaines méthodes que j'avais apprises
+lors de mon apprentissage du langage Kotlin. Pour résoudre ces problèmes, j'ai échangé et consacré du temps avec mon groupe
+pour bien comprendre les énoncés et nous entraider mutuellement._"
 ====
 
 * *Adrien* : +
 ====
-
+_"Le projet a été difficle à assimiler. J'ai été confronté à de nombreuses difficultés,
+notamment en ce qui concerne les relations entre les classes.
+De plus, à plusieurs reprises, je ne savais pas où je devais coder,
+quelles classes appeler et comment appliquer certaines méthodes.
+Enfin, j'ai dû souvent solliciter l'aide de mon groupe, ce qui a suscité de la frustration,
+car je réalisais que je ne parvenais pas à progresser de manière autonome bien que le projet soit intéressant."_
 ====
 
 * *Devamadushan* : +
 ====
-Le projet n'etait pas evidemnt à comprendre cependant j'ai su faire preuvre de determination et
-j'ai su mettre en oeuvre mes competences pour parvenir a resoudre des problemes et aider mon groupe.
+_"La compréhension du projet était difficile pour moi en raison de l'utilisation d'un framework.
+Cependant, après avoir consacré du temps à analyser les relations entre les classes, tout est devenu plus clair."_
 ====
 
+
+
 == Conclusion
+
+Pour conclure, Le projet nous a soumis à différentes difficultés comme la répartion des tâches,
+la difficulté à comprendre les classes, les fonctions, les relations, à résoudre et débugué des erreurs.
